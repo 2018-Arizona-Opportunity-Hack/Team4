@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import '../../node_modules/semantic-ui-css/semantic.min.css';
 import { Label, Menu, Tab } from 'semantic-ui-react'
 
 class Home extends Component {
