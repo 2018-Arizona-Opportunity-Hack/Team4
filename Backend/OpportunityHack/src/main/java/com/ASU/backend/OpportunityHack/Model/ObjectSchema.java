@@ -1,13 +1,18 @@
 package com.ASU.backend.OpportunityHack.Model;
 
-import javax.persistence.Entity;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 
-@Entity
+import javax.persistence.Entity;
+import java.util.List;
+
+//@Entity
+@Component
 public class ObjectSchema {
 
     String tableName;
 
-    ObjectParameters objectParameters;
+    List<ObjectParameters> objectParameters;
 
     public String getTableName() {
         return tableName;
@@ -17,11 +22,11 @@ public class ObjectSchema {
         this.tableName = tableName;
     }
 
-    public ObjectParameters getObjectParameters() {
+    public List<ObjectParameters> getObjectParameters() {
         return objectParameters;
     }
 
-    public void setObjectParameters(ObjectParameters objectParameters) {
+    public void setObjectParameters(List<ObjectParameters> objectParameters) {
         this.objectParameters = objectParameters;
     }
 }

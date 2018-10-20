@@ -1,9 +1,11 @@
 package com.ASU.backend.OpportunityHack.Model;
 
 
+import org.springframework.stereotype.Component;
+
 import javax.persistence.Entity;
 
-@Entity
+@Component
 public class ObjectParameters {
 
     String name;
