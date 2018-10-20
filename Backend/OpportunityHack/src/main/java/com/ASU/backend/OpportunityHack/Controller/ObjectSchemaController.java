@@ -25,9 +25,6 @@ public class ObjectSchemaController {
     @RequestMapping(value = "/objectSchema", method = RequestMethod.POST)
     public Map<String, Object> createObject(@RequestBody ObjectSchema objectSchema){
         System.out.println(objectSchema.getTableName());
-//        for(int i = 0; i<objectSchema.getObjectParameters().size(); i++){
-////            System.out.println(objectSchema.getObjectParameters().get(i).getName());
-//        }
         createObjectDAO.createObject(objectSchema);
         return null;
     }
