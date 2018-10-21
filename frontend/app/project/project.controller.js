@@ -5,6 +5,10 @@
     ProjectController.$inject = ['$scope','$http', 'fileUpload'];
     console.log("login cont outside");
 
+    $('.btn-expand-collapse').click(function(e) {
+        $('.navbar-primary').toggleClass('collapsed');
+});
+
     function ProjectController($scope,$http, fileUpload){
       $scope.initialize = function(){
         $scope.entity = {}
