@@ -81,7 +81,7 @@
       $scope.buildQuery = function(){
         let query = "";
         let select = "";
-        if ($scope.activeSel == 1) {
+        if ($scope.activeSel == 1 || $scope.activeSel == 2) {
             query = "select * from "+$scope.query.entityName+";";
         } else if ($scope.activeSel == 3 && $scope.query.full) {
             let xaxis = $scope.query.cond.select.one;
@@ -119,14 +119,16 @@
         });
       }
 
-      $scope.showData = async function(){
+      $scope.showData = async function(isCSV){
         let query = $scope.buildQuery();
-        $scope.tableData = await $scope.getQueryData({query, 'format':'json'});
+        $scope.tableData = await $scope.getQueryData({query, 'format': isCSV ? 'csv':'json'});
         //$scope.tableData = [["1","Test","90","2018-10-10 07:00:00.0"],["3","Test","909","2018-10-10 07:00:00.0"],["4","Test","9","2018-10-10 07:00:00.0"],["5","Test","1","2018-10-10 07:00:00.0"],["6","Test","3","2018-10-10 07:00:00.0"],["7","Test","4","2018-10-10 07:00:00.0"]]
-        $scope.$apply();
-        setTimeout(function() {
-            $('#table_id').DataTable();
-          });
+        if (!isCSV) {
+            $scope.$apply();
+            setTimeout(function() {
+                $('#table_id').DataTable();
+            });
+        }
       }
 
 

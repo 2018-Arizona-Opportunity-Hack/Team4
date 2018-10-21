@@ -8,6 +8,7 @@
     function FormController($scope,$state,$rootScope,$http,  $stateParams, fileUpload){
     
         $scope.initialize = function(){
+            $scope.configURL = configData.url;
             $scope.isStateParam = !!$stateParams.entity; 
             $scope.entityName = $stateParams.entity;
             if(!$scope.entityName){
@@ -31,6 +32,7 @@
                 
             });
         }
+        
         $scope.uploadFile = function(){
             var file = $scope.$root.myFile;
             

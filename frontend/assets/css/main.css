@@ -437,3 +437,12 @@ img {
   .dataTables_wrapper {
 	margin-top: 30px;
   }
+  .my-nav{
+	background-color: #383780;;
+	min-height: 50px;
+    top: 0;
+    z-index: 1071;
+  }
+  .tab-content {
+	padding: 20px;
+  }
