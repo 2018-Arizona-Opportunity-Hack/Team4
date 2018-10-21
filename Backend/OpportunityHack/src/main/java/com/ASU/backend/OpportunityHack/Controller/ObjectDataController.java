@@ -87,11 +87,11 @@ public class ObjectDataController {
 //    }
 
     private String mapData(String dataType) {
-        if (dataType.equals("int")) {
-            return "number";
-        } else if (dataType.equals("str")) {
-            return "text";
-        } else if (dataType.equals("date")) {
+        if (dataType.toLowerCase().contains("integer")) {
+            return "Number";
+        } else if (dataType.toLowerCase().contains("varchar")) {
+            return "Text";
+        } else if (dataType.toLowerCase().contains("timestamp")) {
             return "Date";
         } else {
             return "invalid";
