@@ -7,6 +7,7 @@
 
     function ProjectController($scope,$http, fileUpload){
       $scope.initialize = function(){
+          $scope.activeSchemaTab = 1;
         $scope.entity = {}
         $scope.entity.entityName = "";
         $scope.entity.attributes = [{}];
