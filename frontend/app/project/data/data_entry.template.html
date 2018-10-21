@@ -1,11 +1,13 @@
 <div class="container-fluid col-md-6 col-md-offset-1" ng-init="initialize()">
     <div >
         <br/>
-
-        <form name="form" ng-submit="" role="form">
+        <div ng-hide="entityName">
+            Select an Entity to proceed...
+        </div>
+        <form name="form" ng-submit="" role="form" ng-show="entityName">
             <br>
-
-            <div>
+            
+            <div >
                     <div class="form-group" ng-repeat="x in objects" ng-show="x.name!='id'">
                             <label>{{ x.name }}</label>
                             <input  ng-if='x.dataType=="INTEGER"' type=number class="form-control ng-pristine ng-valid ng-touched" placeholder="Enter a Number" ng-required={{x.isMandatory}} ng-model="x.value">
