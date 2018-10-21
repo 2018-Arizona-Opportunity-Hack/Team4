@@ -10,7 +10,8 @@
         $scope.entity = {}
         $scope.entity.entityName = "";
         $scope.entity.attributes = [{}];
-        $scope.primary = ['Integer', 'String', 'Date'];
+        $scope.primaryCols = ['INTEGER', 'VARCHAR(500)', 'timestamp'];
+        $scope.primary = [{'value':'INTEGER', 'text': 'Integer'}, {'value':'VARCHAR(500)', 'text':'String'}, {'value':'timestamp','text':'Date'}];
         $scope.related = [];
         $scope.dataTypes = $scope.primary;
 
@@ -19,8 +20,8 @@
             .then(function successCallback(response){
                 if(response.data != null){   
                     response.data.forEach(ele => {
-                        if(ele.isEventTable){
-                            $scope.related.push(ele.entityName)
+                        if(!ele.isEventTable){
+                            $scope.related.push({'value': ele.entityName, 'text':ele.entityName})
                         }
                         
                     });                
@@ -76,7 +77,7 @@
       }
 
       $scope.updateOptions = function(tab) {
-        if(tab == 1) {
+        if(tab == 1 && $scope.dataTypes.length > 3) {
           $scope.dataTypes.splice(3); 
         } else if (tab == 2) {
           $scope.dataTypes = $scope.dataTypes.concat($scope.related);
