@@ -29,6 +29,7 @@ public class CreateObjectDAO {
                 query.append(" INTEGER REFERENCES ");
                 query.append(obj.getName());
                 query.append("(id)");
+                associateTables(objectSchema.getEntityName(), obj.getName());
             }
             else {
                 query.append(obj.getName());
@@ -51,6 +52,13 @@ public class CreateObjectDAO {
             q.executeUpdate();
         }
         return null;
+    }
+
+    public void associateTables(String eventstableName, String objectTableName){
+        Query q = entityManager.createNativeQuery("INSERT INTO events_objects_mapping (events_table_name, object_table_name) values (?, ?)");
+        q.setParameter(1,eventstableName);
+        q.setParameter(2, objectTableName);
+        q.executeUpdate();
     }
 
 //    public String returnDatatype(int i){

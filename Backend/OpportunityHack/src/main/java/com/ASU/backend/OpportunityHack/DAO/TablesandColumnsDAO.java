@@ -117,4 +117,11 @@ public class TablesandColumnsDAO {
         return op;
 
     }
+
+    public List<Object> getRelatedTables(String tableName){
+        Query q = entityManager.createNativeQuery("SELECT object_table_name from events_objects_mapping where events_table_name = ?");
+        q.setParameter(1, tableName);
+        List<Object> result = q.getResultList();
+        return result;
+    }
 }
