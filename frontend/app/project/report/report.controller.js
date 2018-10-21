@@ -129,11 +129,7 @@
           });
       }
 
-
-      $scope.generateCharts = async function(){
-        let query = $scope.buildQuery();
-        $scope.tableData = await $scope.getQueryData({query, 'format':'json'});
-        
+      $scope.exportCsv = function(){
         $http.post(configData.url+"exportCsv", {'query':query})
             .then(function successCallback(response){
                 if(response.data != null){                    
@@ -144,6 +140,16 @@
                 console.log("Error updating views");
                 
             });
+      }
+
+      $scope.generateCharts = async function(){
+        let query = $scope.buildQuery();
+        if(!query || query.length == 0){
+            return;
+        }
+        $scope.tableData = await $scope.getQueryData({query, 'format':'json'});
+        
+        
 
 
 

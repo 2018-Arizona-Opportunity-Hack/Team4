@@ -86,7 +86,7 @@
             <div>
                 <button class="btn btn-secondary fa fa-custom fa-list" ng-click="activeSel = 1; showData(); "> Show Data</button>
                 <button class="btn btn-secondary fa fa-custom fa fa-th" ng-click="activeSel = 2; downloadCsv()"> Download CSV</button>
-                <button class="btn btn-secondary fa fa-custom fa-bar-chart-o" ng-click="activeSel = 3; generateCharts();"> Generate Charts</button>
+                <button class="btn btn-secondary fa fa-custom fa-bar-chart-o" ng-click="activeSel = 3;;"> Generate Charts</button>
             </div>
             <div>
                 <div ng-show="activeSel == 1">
@@ -98,12 +98,12 @@
                 <div ng-show="activeSel == 3">
                     <div>
                         <label>x-axis</label>
-                        <select class="form-control" ng-model="query.cond.select.one" ng-change=generateChart()>
+                        <select class="form-control" ng-model="query.cond.select.one" ng-change=generateCharts()>
                             <option value="" style="display:none">Select X-axis</option>
                             <option ng-repeat="x in allEntityDetails[query.selEntityIndex].attributes" ng-value="x.name">{{x.name}}</option>
                         </select>
                         <label>y-axis</label> 
-                        <select class="form-control" ng-model="query.cond.select.two"  ng-change=generateChart()>
+                        <select class="form-control" ng-model="query.cond.select.two"  ng-change=generateCharts()>
                             <option value="" style="display:none">Select Y-axis</option>
                             <option ng-repeat="x in allEntityDetails[query.selEntityIndex].attributes" ng-value="x.name">{{x.name}}</option>
                         </select>
