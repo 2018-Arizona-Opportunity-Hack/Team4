@@ -2,11 +2,11 @@
 (function(){
     var app = angular.module('app');
     app.controller('ProjectController',ProjectController);
-    ProjectController.$inject = ['$scope','$http', 'fileUpload', '$rootScope'];
+    ProjectController.$inject = ['$scope','$http', '$rootScope'];
     console.log("login cont outside");
 
 
-    function ProjectController($scope,$http, fileUpload, $rootScope){
+    function ProjectController($scope,$http, $rootScope){
 
         
         // $('.btn-expand-collapse').click(function(e) {
@@ -50,16 +50,6 @@
 
 
       }
-
-      $scope.uploadFile = function(){
-        var file = $scope.$root.myFile;
-        
-        console.log('file is ' );
-        console.dir(file);
-        
-        var uploadUrl = "bulk-import";
-        fileUpload.uploadFileToUrl(file, uploadUrl);
-     };
 
       $scope.addNewAttribute = function(){
         var temp = {
