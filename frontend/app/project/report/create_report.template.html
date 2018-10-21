@@ -1,3 +1,66 @@
-<div ng-controller="ReportController">
-    
+<div ng-controller="ReportController" ng-init="initialize()">
+    <div>
+        <div class="">
+            <p>Entities</p>
+            <div>
+                <!-- <div ng-repeat="entity in allEntityDetails">
+                    <span>{{entity.entityName}}</span>
+                    <input type="checkbox" ng-value="entity.isSelected">
+                </div> -->
+                <select class="form-control" ng-model="query.entityName">
+                    <option ng-repeat="x in allEntityDetails" ng-value="x.entityName">{{x.entityName}}</option>
+                </select>
+            </div>
+        </div>
+        <div>
+            <input type="checkbox" ng-model="query.full" ng-checked="true"> Entire Data
+            <button type="btn btn-info">Show Data</button>
+            <button type="btn btn-info">Download CSV</button>
+            <div ng-show="!query.full">
+                <table>
+                    <thead>
+                        <th></th>
+                        <th>Column</th>
+                        <th>Condition</th>
+                        <th>Value</th>
+                        <th></th>
+                    </thead>
+                </table>
+
+            </div>
+        </div>
+        
+        <!-- <div style="margin-left: 20%;">
+            <table>
+                <thead>
+                    <th></th>
+                    <th>Column</th>
+                    <th>Condition</th>
+                    <th>Value</th>
+                    <th></th>
+                </thead>
+            </table>
+            <tbody>
+                <tr ng-repeat="c in options">
+                    <td>
+                        <select ng-model="c.type" >
+                            <option value="AND">And</option>
+                            <option value="OR">Or</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select ng-model="c.column" >
+                            <option ng-repeat="col in selectedColumns">{{col.name}}</option>
+                            
+                        </select>
+                    </td>
+                    <td>
+                        <input type="text" ng-model="c.value">
+                    </td>
+                    <td><i class="fa fa-plus" ng-click="options.push({})"></i></td>
+                </tr>
+            </tbody>
+            
+        </div> -->
+    </div>
 </div>

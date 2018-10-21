@@ -25,6 +25,7 @@
                             $scope.related.push({'value': ele.entityName, 'text':ele.entityName})
                         }
                         $scope.entityNames.push(ele.entityName);
+                        $scope.allEntityDetails = response.data;
                         
                     });                
                     console.log(response);
