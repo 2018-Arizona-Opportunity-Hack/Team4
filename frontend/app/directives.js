@@ -21,10 +21,10 @@ angular.module('app')
 		};
 	 }])
 	 .service('fileUpload', ['$http', function ($http) {
-		this.uploadFileToUrl = function(file, uploadUrl){
+		this.uploadFileToUrl = function(file, uploadUrl, entityName){
 		   var fd = new FormData();
 		   fd.append('data', file);
-		
+		   fd.append('tableName', entityName);
 		   $http.post(configData.url+  uploadUrl, fd, {
 			  transformRequest: angular.identity,
 			  headers: {'Content-Type': undefined}
