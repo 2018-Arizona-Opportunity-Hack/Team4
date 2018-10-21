@@ -47,6 +47,7 @@ public class GetTablesandColumnsController {
     @RequestMapping(value = "/getRelatedFieldColumns", method = RequestMethod.GET)
     public List<ObjectParameters> getRelatedFieldColumns(@RequestParam(value = "tableName") String tableName){
         List<Object> tables = tablesandColumnsDAO.getRelatedTables(tableName);
+        tables.add(tableName);
         List<ObjectParameters> result = new ArrayList<>();
         for(Object table : tables){
             String convert = (String) table;

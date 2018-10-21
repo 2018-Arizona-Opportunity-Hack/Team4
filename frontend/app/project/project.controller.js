@@ -14,6 +14,7 @@
         // }
 
       $scope.initialize = function(){
+          $scope.activeSchemaTab = 1;
         $scope.entity = {}
         $scope.entity.entityName = "";
         $scope.entity.attributes = [{}];
@@ -56,7 +57,7 @@
         console.log('file is ' );
         console.dir(file);
         
-        var uploadUrl = "/fileUpload";
+        var uploadUrl = "bulk-import";
         fileUpload.uploadFileToUrl(file, uploadUrl);
      };
 

@@ -1,8 +1,9 @@
-<div>
-	<span class="fontSize" ng-show="activeSchemaTab == 1">Object Name :</span>
-	<span class="fontSize" ng-show="activeSchemaTab == 2">Event Name :</span>
-	
-	<input type="text" class="form-control" placeholder="Name" ng-model="entity.entityName">
+<div class="row form-group">
+	<div class="col col-md-5">
+			<label ng-show="activeSchemaTab == 1">Object Name:</label>
+			<label ng-show="activeSchemaTab == 2">Event Name:</label>
+			<input type="text" class="form-control" placeholder="Name" ng-model="entity.entityName">
+	</div>
 </div>
 <br>
 <div>
