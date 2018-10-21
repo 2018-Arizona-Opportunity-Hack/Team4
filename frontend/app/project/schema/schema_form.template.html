@@ -6,35 +6,31 @@
 </div>
 <div>
 	<p>Attributes</p>
-	<table>
-		<thead>
-			<th>Type</th>
-			<th>Attribute Name</th>
-			<th>Is Mandatory</th>
-			<th>Is Unique</th>
-		</thead>
-		<tbody>
-			<tr ng-repeat="col in entity.attributes">
-				<td>
-					<select class="form-control" ng-model="col.dataType" ng-options="x for x in dataTypes">
+
+	<div class="row form-group">
+		<div class="col col-md-2 text-center">Data Type</div>
+		<div class="col col-md-3 text-center">Attribute Name</div>
+		<div class="col col-md-2 text-center">Is Mandatory</div>
+		<div class="col col-md-2 text-center">Is Unique</div>
+	</div>
+	<div  ng-repeat="col in entity.attributes" class="form-group row">
+			<div class="col col-md-2">
+					<select class="form-control" ng-model="col.dataType">
+						<option ng-repeat="x in dataTypes" ng-value="x.value">{{x.text}}</option>
 					</select>
-				</td>
-				<td>
-					<input type="text" class="form-control"  ng-model="col.name" placeholder=""  ng-disabled="primary.indexOf(col.dataType)<0">
-				</td>
-				<td>
+			</div>
+			<div class="col col-md-3">
+					<input type="text" class="form-control"  ng-model="col.name" placeholder=""  ng-disabled="primaryCols.indexOf(col.dataType)<0">	</div>
+			<div class="col col-md-2">
 					<input type="checkbox" class="form-control"  ng-model="col.isMandatory">
-				</td>
-				<td>
-					<input type="checkbox" class="form-control"  ng-model="col.isUnique" ng-disabled="primary.indexOf(col.dataType)<0">
-				</td>
-				<td>
-					<button ng-click="addNewAttribute()" ng-show="$index == 0"><i class="fa fa-plus"></i></button>
-				</td>
-			</tr>
-			
-		</tbody>
-	</table>
+				</div>
+			<div class="col col-md-2">
+					<input type="checkbox" class="form-control"  ng-model="col.isUnique" ng-disabled="primaryCols.indexOf(col.dataType)<0">
+			</div>
+			<div class="col col-md-2">
+					<button ng-click="addNewAttribute()" ng-show="$index == 0"><i class="fa fa-plus fa-2x"></i></button>
+			</div>
+		</div>
 	<button class="btn btn-primary" type="button" ng-click="submit()">submit</button>
 
 </div>
