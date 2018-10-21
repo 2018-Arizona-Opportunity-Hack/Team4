@@ -11,30 +11,26 @@ import java.util.List;
 @Component
 public class ObjectSchema {
 
-    String tableName;
+    String entityName;
 
-    List<ObjectParameters> objectParameters;
+    List<ObjectParameters> attributes;
 
     private Boolean isEventTable;
 
-    @JsonGetter("entityName")
-    public String getTableName() {
-        return tableName;
+    public String getEntityName() {
+        return entityName;
     }
 
-    @JsonSetter("tableName")
-    public void setTableName(String tableName) {
-        this.tableName = tableName;
+    public void setEntityName(String entityName) {
+        this.entityName = entityName;
     }
 
-    @JsonGetter("attributes")
-    public List<ObjectParameters> getObjectParameters() {
-        return objectParameters;
+    public List<ObjectParameters> getAttributes() {
+        return attributes;
     }
 
-    @JsonSetter("objectParameters")
-    public void setObjectParameters(List<ObjectParameters> objectParameters) {
-        this.objectParameters = objectParameters;
+    public void setAttributes(List<ObjectParameters> attributes) {
+        this.attributes = attributes;
     }
 
     public Boolean getIsEventTable() {

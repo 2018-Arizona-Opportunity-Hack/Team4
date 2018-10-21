@@ -32,7 +32,19 @@
             });
         }
         $scope.submit = function(){
-            console.log($scope.objects);
+            var entityArray = [];
+            var obj1 = {};
+            obj1["attributes"] = $scope.objects;
+            obj1["entityName"] = $scope.entityName;
+            entityArray.push(obj1);
+            var res = $http.post(configData.url+"save", entityArray[0]);
+            console.log(entityArray[0]);
+		res.success(function(data, status, headers, config) {
+			$scope.message = data;
+		});
+		res.error(function(data, status, headers, config) {
+			alert( "Post Functionality failed");
+		});
         }
         /// end of main all fns before this
 

@@ -18,28 +18,44 @@ public class GetTablesandColumnsController {
     TablesandColumnsDAO tablesandColumnsDAO;
 
     @RequestMapping(value = "/getTables", method = RequestMethod.GET)
-    public List<String> getTables(){
+    public List<String> getTables() {
         List<String> result = tablesandColumnsDAO.getTableNames();
         return result;
     }
 
     @RequestMapping(value = "/getTableColumns", method = RequestMethod.GET)
-    public List<ObjectParameters> getTableColumns(@RequestParam(value = "tableName", required = true) String tableName){
+    public List<ObjectParameters> getTableColumns(@RequestParam(value = "tableName", required = true) String tableName) {
         List<ObjectParameters> result = tablesandColumnsDAO.getTableColumns(tableName);
         return result;
     }
 
     @RequestMapping(value = "/getTableColumnMapping", method = RequestMethod.GET)
-    public List<ObjectSchema> getTableColumnMapping(){
+    public List<ObjectSchema> getTableColumnMapping() {
         List<ObjectSchema> result = new ArrayList<>();
         List<String> tableNames = tablesandColumnsDAO.getTableNames();
         HashSet<String> hs = tablesandColumnsDAO.getEventsList();
-        for(String tableName : tableNames){
+        for (String tableName : tableNames) {
             ObjectSchema objectSchema = new ObjectSchema();
-            objectSchema.setTableName(tableName);
-            objectSchema.setObjectParameters(tablesandColumnsDAO.getTableColumns(tableName));
+            objectSchema.setEntityName(tableName);
+            objectSchema.setAttributes(tablesandColumnsDAO.getTableColumns(tableName));
             objectSchema.setIsEventTable(hs.contains(tableName));
             result.add(objectSchema);
+        }
+        return result;
+    }
+
+    @RequestMapping(value = "/getRelatedFieldColumns", method = RequestMethod.GET)
+    public List<ObjectParameters> getRelatedFieldColumns(@RequestParam(value = "tableName") String tableName){
+        List<Object> tables = tablesandColumnsDAO.getRelatedTables(tableName);
+        List<ObjectParameters> result = new ArrayList<>();
+        for(Object table : tables){
+            String convert = (String) table;
+            List<ObjectParameters> list = tablesandColumnsDAO.getTableColumns(convert);
+            for(ObjectParameters obj : list){
+                obj.setName(convert+"."+obj.getName());
+                result.add(obj);
+            }
+//            result.addAll();
         }
         return result;
     }
