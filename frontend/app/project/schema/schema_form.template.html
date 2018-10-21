@@ -1,11 +1,12 @@
-<div>
-	<span ng-show="activeSchemaTab == 1">Object Name:</span>
-	<span ng-show="activeSchemaTab == 2">Event Name:</span>
+<div ng-init="activeSchemaTab =1">
+	<span class="fontSize" ng-show="activeSchemaTab == 1">Object Name :</span>
+	<span class="fontSize" ng-show="activeSchemaTab == 2">Event Name :</span>
 	
 	<input type="text" class="form-control" placeholder="Name" ng-model="entity.entityName">
 </div>
+<br>
 <div>
-	<p>Attributes</p>
+	<p class="fontSize">Attributes :</p>
 
 	<div class="row form-group">
 		<div class="col col-md-2 text-center">Data Type</div>

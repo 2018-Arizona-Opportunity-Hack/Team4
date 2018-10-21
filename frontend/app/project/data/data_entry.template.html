@@ -5,7 +5,7 @@
         <form name="form" ng-submit="" role="form">
             <br>
             <div class="form-group" ng-hide="isStateParam">
-                    <label>Select an Entity</label>
+                    <label class="fontSize">Select an Entity :</label>
                     <select class="form-control" ng-model="entityName" ng-change="getEntityColumns()">
                             <option ng-repeat="x in entityNames" ng-value="x">{{x}}</option>
                     </select>

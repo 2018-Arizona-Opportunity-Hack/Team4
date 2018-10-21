@@ -359,3 +359,11 @@ img {
 .nav-tabs{
     background: linear-gradient(45deg,#e8ecef,#cdcfd1);
 }
+/*Adding width to the main Nav Bar*/
+.navBarMain{
+	width: 20%;
+}
+
+.fontSize{
+	font-size: 1rem;
+}
