@@ -25,7 +25,7 @@
         $scope.dataTypes = $scope.primary;
 
         
-        $http.get(configData.url+"/getTableColumnMapping")
+        $http.get(configData.url+"getTableColumnMapping")
             .then(function successCallback(response){
                 if(response.data != null){   
                     response.data.forEach(ele => {
