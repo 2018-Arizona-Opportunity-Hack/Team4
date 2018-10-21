@@ -33,22 +33,26 @@
         $scope.savedQueries = [
             {
                 id: 1,
-                query: 'select * from dharmesh1',
-                name: 'Query1',
-                columns: ['col1','col2','col3']
+                query: 'select donor.id, donor.name, sum(donation.amount) from donor, donations where donor.id = donation.donor_id group by donor.id',
+                name: 'Total Donations made by each donor',
+                columns: ['Donor Id','Donor Name','Amount']
             }, {
                 id: 2,
-                query: 'select * from donor',
-                name: 'Donor',
+                query: 'select * from patients_admit_records ',
+                name: 'Patients needing 24 hrs attention',
                 columns: ['col1','col2','col3']
             },
 
         ];
       }
 
-      $scope.executeQuery = function(query){
-        $scope.savedQueryData =  $scope.getQueryData({query, 'format':'json'});
-
+      $scope.executeQuery = async function(query){
+        $scope.savedQueryData =  await $scope.getQueryData({'query': query.query, 'format':'json'});
+        $scope.savedHeader = query.columns;
+        $scope.$apply();
+        setTimeout(function() {
+            $('#table_id1').DataTable();
+          });
 
       }
 

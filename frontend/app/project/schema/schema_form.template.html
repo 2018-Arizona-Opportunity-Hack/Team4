@@ -1,7 +1,7 @@
 <div class="row form-group">
 	<div class="col col-md-5">
-			<label ng-show="activeSchemaTab == 1">Object Name:</label>
-			<label ng-show="activeSchemaTab == 2">Event Name:</label>
+			<label ng-show="activeSchemaTab == 1" style="font-size:1rem">Object Name:</label>
+			<label ng-show="activeSchemaTab == 2"  style="font-size:1rem">Event Name:</label>
 			<input type="text" class="form-control" placeholder="Name" ng-model="entity.entityName">
 	</div>
 </div>
@@ -15,7 +15,7 @@
 		<div class="col col-md-2 text-center">Is Mandatory</div>
 		<div class="col col-md-2 text-center">Is Unique</div>
 	</div>
-	<div  ng-repeat="col in entity.attributes" ng-init="ind = $index" class="form-group row">
+	<div  ng-repeat="col in entity.attributes track by $index" ng-init="ind = $index" class="form-group row">
 			<div class="col col-md-2">
 					<select class="form-control" ng-model="col.dataType">
 						<option ng-repeat="x in dataTypes" ng-value="x.value">{{x.text}}</option>

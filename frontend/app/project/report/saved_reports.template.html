@@ -1,8 +1,30 @@
 <div  ng-controller="ReportController" ng-init="initialize()">
     <p><h4>Saved Queries</h4></p>
     <div>
-        <p ng-repeat="query in savedQueries" ng-class="curQuery == query.id ? 'highlight':''">
-            {{query.name}} <button class="btn-secondary btn-xs btn" ng-click="executeQuery(query.query); curQuery = query.id" class="csr-ptr">Execute</button>
+        <p ng-repeat="query in savedQueries track by $index" ng-class="curQuery == query.id ? 'highlight':''">
+            {{query.name}} <button class="btn-secondary btn-xs btn" ng-click="executeQuery(query); curQuery = query.id" class="csr-ptr">Execute</button>
         </p>
+    </div>
+    <div>
+            <link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+            <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+            <div class="container">
+            <div class="panel">
+            <div class="panel-body" >
+                <table id="table_id1" class="display">
+                    <thead>
+                        <tr>
+                            <th ng-repeat="col in savedHeader">{{col}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in savedQueryData">
+                            <td ng-repeat="i in item">{{i}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            </div>
+            </div>
     </div>
 </div>
