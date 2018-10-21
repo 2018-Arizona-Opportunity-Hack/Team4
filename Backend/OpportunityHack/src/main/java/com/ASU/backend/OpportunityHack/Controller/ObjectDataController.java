@@ -4,6 +4,7 @@ import com.ASU.backend.OpportunityHack.DAO.CreateDataDAO;
 import com.ASU.backend.OpportunityHack.DAO.TablesandColumnsDAO;
 import com.ASU.backend.OpportunityHack.Model.ObjectData;
 import com.ASU.backend.OpportunityHack.Model.ObjectParameters;
+import com.ASU.backend.OpportunityHack.Model.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,7 +25,7 @@ public class ObjectDataController {
     @PostMapping(path = "/save")
     public String saveObject(@RequestBody ObjectData od) {
         createDataDAO.saveObject(od);
-        return "ok";
+        return "";
     }
 
     @RequestMapping(value = "/download-template/{entity}")
@@ -75,15 +76,17 @@ public class ObjectDataController {
 
     @PostMapping(value = "/export")
     @ResponseBody
-    public String exportEntity(@RequestParam(value = "query") String query, @RequestParam(value = "format") String format, HttpServletResponse response) {
-        List<String> stringList = Arrays.asList(query.toLowerCase().split(" "));
+    public String exportEntity(@RequestBody Query query, HttpServletResponse response) {
+        System.out.println(query.getQuery());
+        System.out.println(query.getFormat());
+        List<String> stringList = Arrays.asList(query.getQuery().toLowerCase().split(" "));
         String tableName = stringList.get(stringList.indexOf("from") + 1);
-        if (format.equals("csv")) {
+        if (query.getFormat().toLowerCase().equals("csv")) {
             response.setContentType("application/csv");
             String fileSuffix = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
             response.setHeader("Content-Disposition", "attachment; filename=\"" + tableName + "-export-" + fileSuffix + ".csv\"");
         }
-        return tablesandColumnsDAO.getTableDataToExport(query, format);
+        return tablesandColumnsDAO.getTableDataToExport(query.getQuery().toLowerCase(), query.getFormat().toLowerCase());
     }
 
 //    private String mapUnique(boolean u) {
