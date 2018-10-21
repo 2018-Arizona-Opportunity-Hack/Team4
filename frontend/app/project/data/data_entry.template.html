@@ -13,9 +13,9 @@
             <div>
                     <div class="form-group" ng-repeat="x in objects">
                             <label>{{ x.name }}</label>
-                            <input  ng-if='x.dataType=="INTEGER"' type=number class="form-control ng-pristine ng-valid ng-touched" placeholder={{x.name}} ng-required={{x.isMandatory}} ng-model="x.value">
+                            <input  ng-if='x.dataType=="INTEGER"' type=number class="form-control ng-pristine ng-valid ng-touched" placeholder="Enter a Number" ng-required={{x.isMandatory}} ng-model="x.value">
                             <input  ng-if='x.dataType=="timestamp"' type=date class="form-control ng-pristine ng-valid ng-touched" placeholder={{x.name}} ng-required={{x.isMandatory}} ng-model="x.value">
-                            <input  ng-if='x.dataType!="INTEGER" && x.dataType!="timestamp"' type=text class="form-control ng-pristine ng-valid ng-touched" placeholder={{x.name}} ng-required={{x.isMandatory}} ng-model="x.value">
+                            <input  ng-if='x.dataType!="INTEGER" && x.dataType!="timestamp"' type=text class="form-control ng-pristine ng-valid ng-touched" placeholder="Enter Text" ng-required={{x.isMandatory}} ng-model="x.value">
                         </div>
                 <button class="btn btn-primary" type="button" ng-click="submit()">submit</button>
             </div>
