@@ -1,4 +1,4 @@
-<div>
+<div  ng-controller="ReportController" ng-init="initialize()">
     <p><h4>Saved Queries</h4></p>
     <div>
         <p ng-repeat="query in savedQueries" ng-class="curQuery == query.id ? 'highlight':''">
