@@ -68,7 +68,10 @@ public class ObjectDataController {
     }
 
     private String mapMandatory(Boolean mandatory) {
-        if (mandatory) {
+        System.out.println("******************************************************");
+        System.out.println(mandatory);
+        System.out.println("******************************************************");
+        if (!mandatory) {
             return "Mandatory";
         }
         return "Not-Mandatory";
