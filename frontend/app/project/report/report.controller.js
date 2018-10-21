@@ -11,6 +11,7 @@
         $scope.options = [{}];
         $scope.initSavedQueries();
         $scope.activeSel;
+        $scope.arrayNew = [];
         $scope.tableData = [];
 
         // $http.get(configData.url+"/")
