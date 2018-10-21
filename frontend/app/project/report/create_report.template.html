@@ -1,4 +1,4 @@
-<div ng-controller="ReportController" ng-init="initialize()">
+<div ng-init="initialize()">
     <div>
         <div class="pull-left" style="margin-right: 5%">
             <p class="fontSize">Entities</p>
@@ -40,6 +40,7 @@
                         <th>Condition</th>
                         <th>Value</th>
                         <th></th>
+                        <th></th>
                     </thead>
                     <tbody>
                         <tr ng-repeat="filter in query.cond.filters track by $index" ng-init="index = $index">
@@ -66,6 +67,9 @@
                             </td>
                             <td>
                                 <i class="fa fa-plus fa-2x csr-ptr" ng-click="query.cond.filters.push({})" ng-show="$index == 0"></i>
+                            </td>
+                            <td>
+                                <i class="fa fa-trash fa-2x csr-ptr" ng-click="query.cond.filters.splice($index, 1)" ></i>
                             </td>
                         </tr>
                     </tbody>

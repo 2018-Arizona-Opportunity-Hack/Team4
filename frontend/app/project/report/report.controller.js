@@ -8,7 +8,7 @@
       $scope.initialize = function(){
         $scope.query = "";
         $scope.options = [{}];
-
+        $scope.initSavedQueries();
         
         // $http.get(configData.url+"/")
         //     .then(function successCallback(response){
@@ -24,6 +24,25 @@
                 
         //     });
 
+
+      }
+
+      $scope.initSavedQueries = function(){
+        $scope.savedQueries = [
+            {
+                id: 1,
+                query: 'select * from dharmesh1',
+                name: 'Query1'
+            }, {
+                id: 2,
+                query: 'select * from donor',
+                name: 'Donor'
+            },
+
+        ];
+      }
+
+      $scope.executeQuery = function(query){
 
       }
 
@@ -93,6 +112,9 @@
                 console.log("Error updating views");
                 
             });
+
+
+
       }
 
     }
