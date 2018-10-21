@@ -15,7 +15,7 @@
 		<div class="col col-md-2 text-center">Is Mandatory</div>
 		<div class="col col-md-2 text-center">Is Unique</div>
 	</div>
-	<div  ng-repeat="col in entity.attributes" class="form-group row">
+	<div  ng-repeat="col in entity.attributes" ng-init="ind = $index" class="form-group row">
 			<div class="col col-md-2">
 					<select class="form-control" ng-model="col.dataType">
 						<option ng-repeat="x in dataTypes" ng-value="x.value">{{x.text}}</option>
@@ -32,6 +32,10 @@
 			<div class="col col-md-2">
 					<i ng-click="addNewAttribute()" ng-show="$index == 0"  class="fa fa-plus fa-2x csr-ptr"></i>
 			</div>
+			<div class="col col-md-1">
+					<i class="fa fa-trash fa-2x csr-ptr" ng-click="entity.attributes.splice(ind, 1)" ></i>
+			</div>
+			
 		</div>
 	<button class="btn btn-primary" type="button" ng-click="submit()">submit</button>
 

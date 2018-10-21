@@ -62,7 +62,7 @@ public class TablesandColumnsDAO {
     }
 
     public Boolean changeBoolean(String value) {
-        return value.toLowerCase() == "yes" ? true : false;
+        return value.toLowerCase().equals("yes") ? true : false;
     }
 
     public String getTableDataToExport(String query, String format) {

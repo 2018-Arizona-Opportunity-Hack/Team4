@@ -6,7 +6,7 @@
             <br>
 
             <div>
-                    <div class="form-group" ng-repeat="x in objects">
+                    <div class="form-group" ng-repeat="x in objects" ng-show="x.name!='id'">
                             <label>{{ x.name }}</label>
                             <input  ng-if='x.dataType=="INTEGER"' type=number class="form-control ng-pristine ng-valid ng-touched" placeholder="Enter a Number" ng-required={{x.isMandatory}} ng-model="x.value">
                             <input  ng-if='x.dataType=="timestamp"' type=date class="form-control ng-pristine ng-valid ng-touched" placeholder={{x.name}} ng-required={{x.isMandatory}} ng-model="x.value">
