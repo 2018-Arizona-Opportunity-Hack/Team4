@@ -42,7 +42,6 @@ public class CreateDataDAO {
         for (Attribute a : od.getAttributes()) {
             if (dateColumns.contains(a.getName())) {
                 try {
-
                     DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH);
                     LocalDateTime date = LocalDateTime.parse(a.getValue(), inputFormatter);
                     Timestamp d = Timestamp.valueOf(date);
@@ -59,7 +58,7 @@ public class CreateDataDAO {
                 continue;
             }
 
-            if (od.getAttributes().indexOf(a) < od.getAttributes().size() - count) {
+            if (od.getAttributes().indexOf(a) <=od.getAttributes().size() - count) {
                 names.append(a.getName() + ",");
                 values.append("'" + value + "',");
             } else {
