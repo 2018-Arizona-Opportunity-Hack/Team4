@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -27,8 +29,9 @@ public class ObjectDataController {
     @RequestMapping(value = "/download-template/{entity}")
     @ResponseBody
     public String templateAsCSV(@PathVariable String entity, HttpServletResponse response) {
+        String fileSuffix = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
         response.setContentType("application/csv");
-        response.setHeader("Content-Disposition", "attachment; filename=\"" + entity + ".csv\"");
+        response.setHeader("Content-Disposition", "attachment; filename=\"" + entity + "-template-" + fileSuffix + ".csv\"");
         List<ObjectParameters> objectParametersList = tablesandColumnsDAO.getTableColumns(entity);
         StringBuilder columnNames = new StringBuilder();
         StringBuilder dataTypes = new StringBuilder();
@@ -70,7 +73,8 @@ public class ObjectDataController {
     @ResponseBody
     public String exportEntity(@PathVariable String entity, HttpServletResponse response) {
         response.setContentType("application/csv");
-        response.setHeader("Content-Disposition", "attachment; filename=\"" + entity + ".csv\"");
+        String fileSuffix = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+        response.setHeader("Content-Disposition", "attachment; filename=\"" + entity + "-export-" + fileSuffix + ".csv\"");
         return tablesandColumnsDAO.getTableDataToExport(entity);
     }
 
