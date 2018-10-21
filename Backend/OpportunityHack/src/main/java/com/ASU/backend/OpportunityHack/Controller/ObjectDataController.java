@@ -38,6 +38,9 @@ public class ObjectDataController {
         StringBuilder mandatory = new StringBuilder();
         //StringBuilder unique = new StringBuilder();
         for (ObjectParameters op : objectParametersList) {
+            if (op.getName().toLowerCase().equals("id")) {
+                continue;
+            }
             if (objectParametersList.indexOf(op) != objectParametersList.size() - 1) {
                 columnNames.append(op.getName() + "(" + mapData(op.getDataType()) + "-" + mapMandatory(op.getIsMandatory()) + ")" + ",");
                 //dataTypes.append(mapData(op.getDataType()) + ",");

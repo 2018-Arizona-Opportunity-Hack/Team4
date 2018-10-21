@@ -7,7 +7,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
@@ -28,7 +27,7 @@ public class TablesandColumnsDAO {
                 "from information_schema.columns \n" +
                 "where table_name = ?";
         Query q = entityManager.createNativeQuery(query);
-        q.setParameter(1, tableName);
+        q.setParameter(1, tableName.toLowerCase());
         List<Object[]> result = q.getResultList();
         List<ObjectParameters> result1 = new ArrayList<>();
         for (int i = 0; i < result.size(); i++) {
@@ -41,7 +40,7 @@ public class TablesandColumnsDAO {
         return result1;
     }
 
-    public HashSet<String> getEventsList(){
+    public HashSet<String> getEventsList() {
         String query = "select * from events_tables";
         Query q = entityManager.createNativeQuery(query);
         List<String> result = q.getResultList();
@@ -49,8 +48,8 @@ public class TablesandColumnsDAO {
         return hs;
     }
 
-    public String modifyDataTypeName(String value){
-        if(value.contains("char"))
+    public String modifyDataTypeName(String value) {
+        if (value.contains("char"))
             return "VARCHAR(500)";
         if (value.contains("int"))
             return "INTEGER";
