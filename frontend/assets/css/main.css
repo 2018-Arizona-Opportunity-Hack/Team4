@@ -241,7 +241,8 @@ img {
 
 #sidebar {
     height: 100vh;
-    background: linear-gradient(45deg,#084442,#16081e);
+	background: linear-gradient(45deg,#084442,#16081e);
+	width: 20%;
 }
 
 #sidebar .list-group-item {
