@@ -81,11 +81,12 @@
 
       $scope.showData = async function(){
         let query = $scope.buildQuery();
-        //$scope.tableData = await $scope.getQueryData({query, 'format':'json'});
-        $scope.tableData = [["1","Test","90","2018-10-10 07:00:00.0"],["3","Test","909","2018-10-10 07:00:00.0"],["4","Test","9","2018-10-10 07:00:00.0"],["5","Test","1","2018-10-10 07:00:00.0"],["6","Test","3","2018-10-10 07:00:00.0"],["7","Test","4","2018-10-10 07:00:00.0"]]
+        $scope.tableData = await $scope.getQueryData({query, 'format':'json'});
+        //$scope.tableData = [["1","Test","90","2018-10-10 07:00:00.0"],["3","Test","909","2018-10-10 07:00:00.0"],["4","Test","9","2018-10-10 07:00:00.0"],["5","Test","1","2018-10-10 07:00:00.0"],["6","Test","3","2018-10-10 07:00:00.0"],["7","Test","4","2018-10-10 07:00:00.0"]]
+        $scope.$apply();
         setTimeout(function() {
             $('#table_id').DataTable();
-          }, 500);
+          });
       }
 
 
