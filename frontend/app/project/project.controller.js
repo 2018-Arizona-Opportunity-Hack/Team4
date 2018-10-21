@@ -2,14 +2,17 @@
 (function(){
     var app = angular.module('app');
     app.controller('ProjectController',ProjectController);
-    ProjectController.$inject = ['$scope','$http', 'fileUpload'];
+    ProjectController.$inject = ['$scope','$http', 'fileUpload', '$rootScope'];
     console.log("login cont outside");
 
-    $('.btn-expand-collapse').click(function(e) {
-        $('.navbar-primary').toggleClass('collapsed');
-});
 
-    function ProjectController($scope,$http, fileUpload){
+    function ProjectController($scope,$http, fileUpload, $rootScope){
+
+        
+        // $('.btn-expand-collapse').click(function(e) {
+        //     $('.navbar-primary').toggleClass('collapsed');
+        // }
+
       $scope.initialize = function(){
           $scope.activeSchemaTab = 1;
         $scope.entity = {}
@@ -30,9 +33,10 @@
                             $scope.related.push({'value': ele.entityName, 'text':ele.entityName})
                         }
                         $scope.entityNames.push(ele.entityName);
-                        $scope.allEntityDetails = response.data;
+                        ele.full = true;
                         
-                    });                
+                    });     
+                    $rootScope.allEntityDetails = response.data;           
                     console.log(response);
                 }else{
                     //$scope.error = "Unable to fetch posts";
