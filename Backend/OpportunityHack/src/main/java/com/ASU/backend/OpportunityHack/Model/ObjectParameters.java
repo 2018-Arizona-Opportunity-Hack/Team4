@@ -1,16 +1,18 @@
 package com.ASU.backend.OpportunityHack.Model;
 
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.Entity;
 
 @Component
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ObjectParameters {
 
     String name;
 
-    Integer dataType;
+    String dataType;
 
     Boolean mandatory;
 
@@ -24,11 +26,11 @@ public class ObjectParameters {
         this.name = name;
     }
 
-    public Integer getDataType() {
+    public String getDataType() {
         return dataType;
     }
 
-    public void setDataType(Integer dataType) {
+    public void setDataType(String dataType) {
         this.dataType = dataType;
     }
 

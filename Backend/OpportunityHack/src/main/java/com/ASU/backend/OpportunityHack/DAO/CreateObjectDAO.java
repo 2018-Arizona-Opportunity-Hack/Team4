@@ -22,7 +22,7 @@ public class CreateObjectDAO {
         for(ObjectParameters obj : objectSchema.getObjectParameters()){
             query.append(obj.getName());
             query.append(" ");
-            query.append(returnDatatype(obj.getDataType()));
+            query.append(obj.getDataType());
             if(obj.getUnique())
                 query.append(" UNIQUE");
             if(obj.getMandatory())
@@ -36,9 +36,9 @@ public class CreateObjectDAO {
         return null;
     }
 
-    public String returnDatatype(int i){
-        if(i == 1) return "INTEGER";
-        else if(i == 2) return "VARCHAR(100)";
-        else return "timestamp";
-    }
+//    public String returnDatatype(int i){
+//        if(i == 1) return "INTEGER";
+//        else if(i == 2) return "VARCHAR(100)";
+//        else return "timestamp";
+//    }
 }
