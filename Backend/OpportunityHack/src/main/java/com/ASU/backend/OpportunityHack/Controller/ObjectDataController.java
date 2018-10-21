@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 public class ObjectDataController {
     @Autowired
     CreateDataDAO createDataDAO;
@@ -35,25 +36,25 @@ public class ObjectDataController {
         //StringBuilder unique = new StringBuilder();
         for (ObjectParameters op : objectParametersList) {
             if (objectParametersList.indexOf(op) != objectParametersList.size() - 1) {
-                columnNames.append(op.getName() + ",");
-                dataTypes.append(mapData(op.getDataType()) + ",");
-                mandatory.append(mapMandatory(op.getMandatory()) + ",");
+                columnNames.append(op.getName() + "(" + mapData(op.getDataType()) + "-" + mapMandatory(op.getMandatory()) + ")" + ",");
+                //dataTypes.append(mapData(op.getDataType()) + ",");
+                //mandatory.append(mapMandatory(op.getMandatory()) + ",");
                 //unique.append(mapUnique(op.getUnique()) + ",");
             } else {
-                columnNames.append(op.getName());
-                dataTypes.append(mapData(op.getDataType()));
-                mandatory.append(mapMandatory(op.getMandatory()));
+                columnNames.append(op.getName() + "(" + mapData(op.getDataType()) + "-" + mapMandatory(op.getMandatory()) + ")");
+                //dataTypes.append(mapData(op.getDataType()));
+                //mandatory.append(mapMandatory(op.getMandatory()));
                 //unique.append(op.getUnique());
             }
         }
         columnNames.append("\n");
-        dataTypes.append("\n");
-        mandatory.append("\n");
+        //dataTypes.append("\n");
+        //mandatory.append("\n");
         //unique.append("\n");
         StringBuilder data = new StringBuilder();
         data.append(columnNames);
-        data.append(dataTypes);
-        data.append(mandatory);
+        //data.append(dataTypes);
+        //data.append(mandatory);
         //data.append(unique);
         return data.toString();
     }
@@ -63,6 +64,14 @@ public class ObjectDataController {
             return "Mandatory";
         }
         return "Not-Mandatory";
+    }
+
+    @RequestMapping(value = "/export/{entity}")
+    @ResponseBody
+    public String exportEntity(@PathVariable String entity, HttpServletResponse response) {
+        response.setContentType("application/csv");
+        response.setHeader("Content-Disposition", "attachment; filename=\"" + entity + ".csv\"");
+        return tablesandColumnsDAO.getTableDataToExport(entity);
     }
 
 //    private String mapUnique(boolean u) {

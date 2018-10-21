@@ -4,14 +4,12 @@ package com.ASU.backend.OpportunityHack.Controller;
 import com.ASU.backend.OpportunityHack.DAO.CreateObjectDAO;
 import com.ASU.backend.OpportunityHack.Model.ObjectSchema;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
 @RestController
+@CrossOrigin
 public class ObjectSchemaController {
 
     @Autowired

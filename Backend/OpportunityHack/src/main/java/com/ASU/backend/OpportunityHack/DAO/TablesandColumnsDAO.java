@@ -7,7 +7,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 @Repository
@@ -16,13 +15,13 @@ public class TablesandColumnsDAO {
     @PersistenceContext
     EntityManager entityManager;
 
-    public List<String> getTableNames(){
+    public List<String> getTableNames() {
         String query = "SELECT table_name FROM information_schema.tables WHERE table_schema='public'";
         List<String> result = entityManager.createNativeQuery(query).getResultList();
         return result;
     }
 
-    public List<ObjectParameters> getTableColumns(String tableName){
+    public List<ObjectParameters> getTableColumns(String tableName) {
         String query = "select column_name,data_type, is_nullable \n" +
                 "from information_schema.columns \n" +
                 "where table_name = ?";
@@ -30,27 +29,55 @@ public class TablesandColumnsDAO {
         q.setParameter(1, tableName);
         List<Object[]> result = q.getResultList();
         List<ObjectParameters> result1 = new ArrayList<>();
-        for(int i=0; i<result.size(); i++){
+        for (int i = 0; i < result.size(); i++) {
             ObjectParameters objectParameters = new ObjectParameters();
-            objectParameters.setName((String)result.get(i)[0]);
-            objectParameters.setDataType(modifyDataTypeName((String)result.get(i)[1]));
-            objectParameters.setMandatory(changeBoolean((String)result.get(i)[2]));
+            objectParameters.setName((String) result.get(i)[0]);
+            objectParameters.setDataType(modifyDataTypeName((String) result.get(i)[1]));
+            objectParameters.setMandatory(changeBoolean((String) result.get(i)[2]));
             result1.add(objectParameters);
         }
         return result1;
     }
 
-    public String modifyDataTypeName(String value){
-        if(value.contains("char"))
+    public String modifyDataTypeName(String value) {
+        if (value.contains("char"))
             return "str";
-        if(value.contains("int"))
+        if (value.contains("int"))
             return "int";
-        if(value.contains("time"))
+        if (value.contains("time"))
             return "date";
         return "";
     }
 
-    public Boolean changeBoolean(String value){
-        return value.toLowerCase() =="yes"? true : false;
+    public Boolean changeBoolean(String value) {
+        return value.toLowerCase() == "yes" ? true : false;
+    }
+
+    public String getTableDataToExport(String tableName) {
+        String s = "SELECT * FROM " + tableName;
+        Query q = entityManager.createNativeQuery(s);
+        List<Object[]> listOfRows = q.getResultList();
+        String op = "";
+        List<ObjectParameters> objectParameters = getTableColumns(tableName);
+        for (ObjectParameters tmp : objectParameters) {
+            if (objectParameters.indexOf(tmp) != objectParameters.size() - 1) {
+                op = op + tmp.getName() + ",";
+            } else {
+                op = op + tmp.getName();
+            }
+        }
+        op += "\n";
+        for (int i = 0; i < listOfRows.size(); i++) {
+            for (int j = 0; j < listOfRows.get(i).length; j++) {
+                if (j != listOfRows.get(i).length - 1) {
+                    op = op + String.valueOf(listOfRows.get(i)[j] == null ? '\0' : listOfRows.get(i)[j]) + ",";
+                } else {
+                    op = op + String.valueOf(listOfRows.get(i)[j] == null ? '\0' : listOfRows.get(i)[j]);
+                }
+            }
+            op += "\n";
+        }
+        return op;
+
     }
 }
