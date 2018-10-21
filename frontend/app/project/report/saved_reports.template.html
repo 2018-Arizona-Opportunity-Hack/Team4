@@ -18,7 +18,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="item in savedQueryData">
+                        <tr ng-repeat="item in savedQueryData track by $index">
                             <td ng-repeat="i in item">{{i}}</td>
                         </tr>
                     </tbody>
