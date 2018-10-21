@@ -37,7 +37,7 @@
           });
       }
 
-      $scope.generateChart = function(){
+      $scope.buildQuery = function(){
         let query = "";
         let select = "";
         let xaxis = $scope.query.cond.select.one;
@@ -53,6 +53,20 @@
         if($scope.query.full){
             query = "select "+xaxis+","+yaxis+" from "+$scope.query.entityName+";";
         }
+        return query;
+      }
+
+      $scope.getQueryData = function(query){
+
+      }
+
+      $scope.showData = function(){
+        let query = $scope.buildQuery();
+      }
+
+
+      $scope.generateCharts = function(){
+        let query = $scope.buildQuery();
         $http.post(configData.url+"exportCsv", {'query':query})
             .then(function successCallback(response){
                 if(response.data != null){                    
