@@ -17,6 +17,7 @@
 			})
 		    .state('data',{
 				url:'/data/:entity',
+				controller: 'FormController',
 				templateUrl: 'app/project/data/data_entry.template.html',
 			})
 			.state('table',{
