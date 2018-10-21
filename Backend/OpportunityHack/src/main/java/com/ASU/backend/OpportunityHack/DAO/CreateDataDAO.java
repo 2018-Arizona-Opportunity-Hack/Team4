@@ -44,7 +44,6 @@ public class CreateDataDAO {
                 try {
 
                     DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH);
-                    DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd-MM-yyy HH:mm:ss", Locale.ENGLISH);
                     LocalDateTime date = LocalDateTime.parse(a.getValue(), inputFormatter);
                     Timestamp d = Timestamp.valueOf(date);
                     value = d.toString();
