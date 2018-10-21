@@ -6,7 +6,7 @@
             <table id="table_id" class="display">
                 <thead>
                     <tr>
-                        <th ng-repeat="col in allEntityDetails[query.selEntityIndex].attributes">{{col.name}}</th>
+                        <th ng-repeat="col in allEntityDetails[query.selEntityIndex].attributes track by $index">{{col.name}}</th>
                     </tr>
                 </thead>
                 <tbody>
