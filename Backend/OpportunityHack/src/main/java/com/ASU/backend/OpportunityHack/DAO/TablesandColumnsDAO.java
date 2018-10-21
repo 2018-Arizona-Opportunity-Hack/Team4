@@ -7,6 +7,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 @Repository
@@ -39,8 +41,16 @@ public class TablesandColumnsDAO {
         return result1;
     }
 
-    public String modifyDataTypeName(String value) {
-        if (value.contains("char"))
+    public HashSet<String> getEventsList(){
+        String query = "select * from events_tables";
+        Query q = entityManager.createNativeQuery(query);
+        List<String> result = q.getResultList();
+        HashSet<String> hs = new HashSet<>(result);
+        return hs;
+    }
+
+    public String modifyDataTypeName(String value){
+        if(value.contains("char"))
             return "str";
         if (value.contains("int"))
             return "int";

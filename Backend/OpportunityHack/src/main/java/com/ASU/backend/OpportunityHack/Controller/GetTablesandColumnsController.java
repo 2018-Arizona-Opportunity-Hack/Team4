@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 @RestController
@@ -32,10 +33,12 @@ public class GetTablesandColumnsController {
     public List<ObjectSchema> getTableColumnMapping(){
         List<ObjectSchema> result = new ArrayList<>();
         List<String> tableNames = tablesandColumnsDAO.getTableNames();
+        HashSet<String> hs = tablesandColumnsDAO.getEventsList();
         for(String tableName : tableNames){
             ObjectSchema objectSchema = new ObjectSchema();
             objectSchema.setTableName(tableName);
             objectSchema.setObjectParameters(tablesandColumnsDAO.getTableColumns(tableName));
+            objectSchema.setIsEventTable(hs.contains(tableName));
             result.add(objectSchema);
         }
         return result;

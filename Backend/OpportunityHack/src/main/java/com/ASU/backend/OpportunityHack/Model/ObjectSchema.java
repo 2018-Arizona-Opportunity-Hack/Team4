@@ -15,6 +15,8 @@ public class ObjectSchema {
 
     List<ObjectParameters> objectParameters;
 
+    private Boolean isEventTable;
+
     @JsonGetter("entityName")
     public String getTableName() {
         return tableName;
@@ -33,5 +35,13 @@ public class ObjectSchema {
     @JsonSetter("objectParameters")
     public void setObjectParameters(List<ObjectParameters> objectParameters) {
         this.objectParameters = objectParameters;
+    }
+
+    public Boolean getIsEventTable() {
+        return isEventTable;
+    }
+
+    public void setIsEventTable(Boolean eventTable) {
+        isEventTable = eventTable;
     }
 }
