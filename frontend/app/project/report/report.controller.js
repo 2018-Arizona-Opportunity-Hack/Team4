@@ -9,6 +9,7 @@
         $scope.query = "";
         $scope.options = [{}];
 
+        
         // $http.get(configData.url+"/")
         //     .then(function successCallback(response){
         //         if(response.data != null){                    
@@ -24,6 +25,21 @@
         //     });
 
 
+      }
+
+      $scope.getRelatedColumns = function(){
+        
+        $http.get(configData.url+"getRelatedFieldColumns?tableName="+$scope.query.entityName)
+            .then(function successCallback(response){
+                if(response.data != null){                    
+                    console.log(response);
+                    $scope.selEntityCols = response.data;
+                }
+
+            }, function errorCallback(response){
+                console.log("Error updating views");
+                
+            });
       }
 
       $scope.setSelEntityIndex = function(){
@@ -57,7 +73,7 @@
       }
 
       $scope.getQueryData = function(query){
-
+            // api call
       }
 
       $scope.showData = function(){
@@ -71,13 +87,10 @@
             .then(function successCallback(response){
                 if(response.data != null){                    
                     console.log(response);
-                }else{
-                    //$scope.error = "Unable to fetch posts";
                 }
 
             }, function errorCallback(response){
                 console.log("Error updating views");
-                //$scope.error = "Unable to fetch posts";
                 
             });
       }

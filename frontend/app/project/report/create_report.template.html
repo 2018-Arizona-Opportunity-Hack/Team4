@@ -7,7 +7,7 @@
                     <span>{{entity.entityName}}</span>
                     <input type="checkbox" ng-value="entity.isSelected">
                 </div> -->
-                <select class="form-control" ng-model="query.entityName" ng-change="query.full = true; setSelEntityIndex(); query.cond.filters = [{}]">
+                <select class="form-control" ng-model="query.entityName" ng-change="query.full = true; getRelatedColumns(); setSelEntityIndex(); query.cond.filters = [{}]">
                     <option value="" style="display:none">Select Entity</option>
                     <option ng-repeat="x in allEntityDetails" ng-value="x.entityName">{{x.entityName}}</option>
                 </select>
@@ -26,7 +26,7 @@
                     <div>
                         <select class="form-control" ng-model="query.cond.select"  multiple data-live-search="true">
                             <option value="" style="display:none">Select columns</option>
-                            <option ng-repeat="x in allEntityDetails[query.selEntityIndex].attributes" ng-value="x.name">{{x.name}}</option>
+                            <option ng-repeat="x in selEntityCols" ng-value="x.name">{{x.name}}</option>
                         </select>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
                             <td>
                                 <select class="form-control" ng-model="query.cond.filter[index].column" >
                                     <option value="" style="display:none">Select columns</option>
-                                    <option ng-repeat="x in allEntityDetails[query.selEntityIndex].attributes" ng-value="x.name">{{x.name}}</option>
+                                    <option ng-repeat="x in selEntityCols" ng-value="x.name">{{x.name}}</option>
                                 </select>
                             </td>
                             <td>
