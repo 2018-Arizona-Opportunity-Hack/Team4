@@ -6,7 +6,7 @@
 
     function ReportController($scope,$http, fileUpload, $rootScope){
       $scope.initialize = function(){
-        $scope.chartType = 'line';  
+        $scope.chartType = 'spline';  
         $scope.query = {};
         $scope.options = [{}];
         $scope.initSavedQueries();
@@ -217,8 +217,57 @@
       
     }
 
-    $scope.createCharts = function(chartType){
-
+    $scope.createCharts = function(chartType, arrayNew){
+        Highcharts.chart('chartContainer', {
+            chart: {
+                type: chartType,
+            },
+            title: {
+                text: 'Line Chart'
+            },
+            // subtitle: {
+            //     text: 'According to the Standard Atmosphere Model'
+            // },
+            xAxis: {
+                reversed: false,
+                title: {
+                    // enabled: true,
+                    text: 'xAxis'
+                },
+                labels: {
+                    format: '{value} '
+                },
+                maxPadding: 0.05,
+                showLastLabel: true
+            },
+            yAxis: {
+                title: {
+                    text: 'yAxis'
+                },
+                labels: {
+                    format: '{value}'
+                },
+                lineWidth: 2
+            },
+            legend: {
+                enabled: false
+            },
+            tooltip: {
+                headerFormat: '<b>{series.name}</b><br/>',
+                pointFormat: '{point.x} : {point.y}'
+            },
+            plotOptions: {
+                spline: {
+                    marker: {
+                        enable: false
+                    }
+                }
+            },
+            series: [{
+                // name: 'Temperature',
+                data: arrayNew
+            }]
+        });   
     }
 
     $scope.generateCharts = async function(){
@@ -228,65 +277,12 @@
       }
       var data = [[2,6],[3,5],[4,2],[5,1]];
       $scope.tableData = await $scope.getQueryData({query, 'format':'json'});
+      
       var arrayNew = [];
       for(var i=0;i<$scope.tableData.length;i++ ){ var innerArray = []; innerArray.push(($scope.tableData[0][0])); innerArray.push(Number($scope.tableData[0][1]));  arrayNew.push(innerArray);}
       // var data = $scope.tableData;
 
-      Highcharts.chart('chartContainer', {
-          chart: {
-              type: 'spline',
-          },
-          title: {
-              text: 'Line Chart'
-          },
-          // subtitle: {
-          //     text: 'According to the Standard Atmosphere Model'
-          // },
-          xAxis: {
-              reversed: false,
-              title: {
-                  // enabled: true,
-                  text: 'xAxis'
-              },
-              labels: {
-                  format: '{value} '
-              },
-              maxPadding: 0.05,
-              showLastLabel: true
-          },
-          yAxis: {
-              title: {
-                  text: 'yAxis'
-              },
-              labels: {
-                  format: '{value}'
-              },
-              lineWidth: 2
-          },
-          legend: {
-              enabled: false
-          },
-          tooltip: {
-              headerFormat: '<b>{series.name}</b><br/>',
-              pointFormat: '{point.x} : {point.y}'
-          },
-          plotOptions: {
-              spline: {
-                  marker: {
-                      enable: false
-                  }
-              }
-          },
-          series: [{
-              // name: 'Temperature',
-              data: arrayNew
-          }]
-      });   
-      
-      
-
-
-
+      $scope.createCharts($scope.chartType, arrayNew);
     }
 
     }
