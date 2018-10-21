@@ -52,11 +52,11 @@ public class ObjectParameters {
         this.unique = unique;
     }
 
-    public Boolean getObject() {
+    public Boolean getIsObject() {
         return isObject;
     }
 
-    public void setObject(Boolean object) {
+    public void setIsObject(Boolean object) {
         isObject = object;
     }
 }
