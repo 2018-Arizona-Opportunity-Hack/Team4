@@ -236,3 +236,125 @@ img {
     margin-left: 100px;
     margin-top: -70px;
 }
+
+/* Nav Bar Styles */
+
+#sidebar {
+    height: 100vh;
+    background: linear-gradient(45deg,#084442,#16081e);
+}
+
+#sidebar .list-group-item {
+    border-radius: 0;
+    background: linear-gradient(45deg,#084442,#16081e);
+    color: #ccc;
+    border-left: 0;
+    border-right: 0;
+    border-color: #2c2c2c;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+/* highlight active menu */
+#sidebar .list-group-item.active {
+    color: #82fa27;
+}
+
+/* closed state */
+#sidebar .list-group .list-group-item[aria-expanded="false"]::after {
+  content: " \f0d7";
+  font-family: FontAwesome;
+  display: inline;
+  text-align: right;
+  padding-left: 5px;
+}
+
+/* open state */
+#sidebar .list-group .list-group-item[aria-expanded="true"] {
+  background-color: #222;
+}
+#sidebar .list-group .list-group-item[aria-expanded="true"]::after {
+  content: " \f0da";
+  font-family: FontAwesome;
+  display: inline;
+  text-align: right;
+  padding-left: 5px;
+}
+
+/* level 1*/
+#sidebar .list-group .collapse .list-group-item  {
+  padding-left: 20px;
+}
+
+/* level 2*/
+#sidebar .list-group .collapse > .collapse .list-group-item {
+  padding-left: 30px;
+}
+
+/* level 3*/
+#sidebar .list-group .collapse > .collapse > .collapse .list-group-item {
+  padding-left: 40px;
+}
+
+@media (max-width:48em) {
+    /* overlay sub levels on small screens */
+    #sidebar .list-group .collapse.in, #sidebar .list-group .collapsing {
+        position: absolute;
+        z-index: 1;
+        width: 190px;
+    }
+    #sidebar .list-group > .list-group-item {
+        text-align: center;
+        padding: .75rem .5rem;
+        min-width: 39px;
+    }
+    /* hide caret icons of top level when collapsed */
+    #sidebar .list-group > .list-group-item[aria-expanded="true"]::after,
+    #sidebar .list-group > .list-group-item[aria-expanded="false"]::after {
+        display:none;
+    }
+}
+
+/* change transition animation to width when entire sidebar is toggled */
+#sidebar.collapse {
+  -webkit-transition-timing-function: ease;
+       -o-transition-timing-function: ease;
+          transition-timing-function: ease;
+  -webkit-transition-duration: .2s;
+       -o-transition-duration: .2s;
+          transition-duration: .2s;
+}
+
+#sidebar.collapsing {
+  opacity: 0.8;
+  width: 0;
+  -webkit-transition-timing-function: ease-in;
+       -o-transition-timing-function: ease-in;
+          transition-timing-function: ease-in;
+  -webkit-transition-property: width;
+       -o-transition-property: width;
+          transition-property: width;
+
+}
+/* Nav Bar Styles */
+
+/* Style for forms*/
+.form-style-parent{
+	/* max-width: 700px; */
+	background: #FAFAFA;
+	padding: 30px;
+	margin: 50px auto;
+	box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+	border-radius: 10px;
+	border: 6px solid #305A72;
+}
+
+/* Navigator main bar to show hide nav*/
+.fa-lg {
+    font-size: 2.333333em !important;
+    padding: 2px !important;
+}
+
+.nav-tabs{
+    background: linear-gradient(45deg,#e8ecef,#cdcfd1);
+}

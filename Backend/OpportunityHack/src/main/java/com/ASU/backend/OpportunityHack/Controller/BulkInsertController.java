@@ -18,7 +18,7 @@ public class BulkInsertController {
     @Autowired
     BulkInsertDAO bulkInsertDAO;
 
-    @RequestMapping(value = "/insertCSVData", method = RequestMethod.POST)
+    @RequestMapping(value = "/bulk-import", method = RequestMethod.POST)
     public Map<String, Object> da(@RequestParam(value = "data")MultipartFile file,
                                              @RequestParam(value = "tableName",required = true) String tableName) throws IOException {
         bulkInsertDAO.insertCSV(tableName, file);

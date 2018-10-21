@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -38,6 +39,9 @@ public class ObjectDataController {
         StringBuilder mandatory = new StringBuilder();
         //StringBuilder unique = new StringBuilder();
         for (ObjectParameters op : objectParametersList) {
+            if (op.getName().toLowerCase().equals("id")) {
+                continue;
+            }
             if (objectParametersList.indexOf(op) != objectParametersList.size() - 1) {
                 columnNames.append(op.getName() + "(" + mapData(op.getDataType()) + "-" + mapMandatory(op.getIsMandatory()) + ")" + ",");
                 //dataTypes.append(mapData(op.getDataType()) + ",");
@@ -69,13 +73,17 @@ public class ObjectDataController {
         return "Not-Mandatory";
     }
 
-    @RequestMapping(value = "/export/{entity}")
+    @PostMapping(value = "/export")
     @ResponseBody
-    public String exportEntity(@PathVariable String entity, HttpServletResponse response) {
-        response.setContentType("application/csv");
-        String fileSuffix = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
-        response.setHeader("Content-Disposition", "attachment; filename=\"" + entity + "-export-" + fileSuffix + ".csv\"");
-        return tablesandColumnsDAO.getTableDataToExport(entity);
+    public String exportEntity(@RequestParam(value = "query") String query, @RequestParam(value = "format") String format, HttpServletResponse response) {
+        List<String> stringList = Arrays.asList(query.toLowerCase().split(" "));
+        String tableName = stringList.get(stringList.indexOf("from") + 1);
+        if (format.equals("csv")) {
+            response.setContentType("application/csv");
+            String fileSuffix = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+            response.setHeader("Content-Disposition", "attachment; filename=\"" + tableName + "-export-" + fileSuffix + ".csv\"");
+        }
+        return tablesandColumnsDAO.getTableDataToExport(query, format);
     }
 
 //    private String mapUnique(boolean u) {

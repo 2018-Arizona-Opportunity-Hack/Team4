@@ -34,7 +34,7 @@
         $scope.submit = function(){
             var entityArray = [];
             var obj1 = {};
-            obj1["attribute"] = $scope.objects;
+            obj1["attributes"] = $scope.objects;
             obj1["entityName"] = $scope.entityName;
             entityArray.push(obj1);
             var res = $http.post(configData.url+"save", entityArray[0]);

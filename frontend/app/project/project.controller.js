@@ -5,7 +5,14 @@
     ProjectController.$inject = ['$scope','$http', 'fileUpload', '$rootScope'];
     console.log("login cont outside");
 
+
     function ProjectController($scope,$http, fileUpload, $rootScope){
+
+        
+        // $('.btn-expand-collapse').click(function(e) {
+        //     $('.navbar-primary').toggleClass('collapsed');
+        // }
+
       $scope.initialize = function(){
         $scope.entity = {}
         $scope.entity.entityName = "";

@@ -1,23 +1,38 @@
 <div ng-controller="ReportController" ng-init="initialize()">
     <div>
-        <div class="">
+        <div class="pull-left" style="margin-right: 5%">
             <p>Entities</p>
             <div>
                 <!-- <div ng-repeat="entity in allEntityDetails">
                     <span>{{entity.entityName}}</span>
                     <input type="checkbox" ng-value="entity.isSelected">
                 </div> -->
-                <select class="form-control" ng-model="query.entityName" ng-change="query.full = true; setSelEntityIndex()">
+                <select class="form-control" ng-model="query.entityName" ng-change="query.full = true; setSelEntityIndex(); query.cond.filters = [{}]">
                     <option value="" style="display:none">Select Entity</option>
                     <option ng-repeat="x in allEntityDetails" ng-value="x.entityName">{{x.entityName}}</option>
                 </select>
             </div>
         </div>
-        <br/>
-        <div ng-show="query.entityName.length>0">
-            <input type="checkbox" ng-model="query.full" ng-checked="{{query.full}}"> Entire Data
+      
+        <div ng-show="query.entityName.length>0" style="margin-left:15%">
+            <input type="checkbox" ng-model="query.full" ng-checked="{{query.full}}" ng-change="activeSel=0" id="ck"> <label for="ck">Entire Data</label>
             <br/>
             <div ng-show="!query.full">
+                <div>
+                    <br/>
+                    <p>
+                        Output columns
+                    </p>
+                    <div>
+                        <select class="form-control" ng-model="query.cond.select"  multiple data-live-search="true">
+                            <option value="" style="display:none">Select columns</option>
+                            <option ng-repeat="x in allEntityDetails[query.selEntityIndex].attributes" ng-value="x.name">{{x.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <p>
+                    Filters
+                </p>
                 <table>
                     <thead>
                         <th></th>
@@ -26,6 +41,34 @@
                         <th>Value</th>
                         <th></th>
                     </thead>
+                    <tbody>
+                        <tr ng-repeat="filter in query.cond.filters track by $index" ng-init="index = $index">
+                            <td>
+                                <select  class="form-control" ng-model="query.cond.filter[index].type" ng-show="$index != 0">
+                                    <option value="AND">And</option>
+                                    <option value="OR">Or</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="form-control" ng-model="query.cond.filter[index].column" >
+                                    <option value="" style="display:none">Select columns</option>
+                                    <option ng-repeat="x in allEntityDetails[query.selEntityIndex].attributes" ng-value="x.name">{{x.name}}</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="form-control" ng-model="query.cond.filter[index].condition" >
+                                    <option value=">">Greater than</option>
+                                    <option value="=">Equals</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input class="form-control" type="text" placeholder="Value" ng-model="query.cond.filter[index].value">
+                            </td>
+                            <td>
+                                <i class="fa fa-plus fa-2x" ng-click="query.cond.filters.push({})"></i>
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
             <br/>

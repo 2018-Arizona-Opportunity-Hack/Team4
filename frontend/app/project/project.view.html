@@ -1,21 +1,27 @@
 <div class="container-fluid main-div" ng-init="initialize()">
-	
-	<div class="row">
-		<div class="nav flex-column nav-pills col-md-2" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-			<a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Schema</a>
-			<a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Data</a>
-			<a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Report</a>
-		  </div>
-		  <div class="tab-content col-md-8" id="v-pills-tabContent">
-			<div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-				<div ng-include="'/app/project/schema/schema.template.html'"></div>
-			</div>
-			<div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-				<div ng-include="'/app/project/data/data.template.html'"></div>
-			</div>
-			<div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-				<div ng-include="'/app/project/report/report.template.html'"></div>
-			</div>
-		  </div>
-	</div>
+		<div class="row">
+        <div class="col-md-3 col-xs-1 p-l-0 p-r-0 collapse in" id="sidebar">
+            <div class="list-group panel">
+                <a  class="list-group-item active " id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home"  role="tab" aria-controls="v-pills-home" aria-selected="true" data-parent="#sidebar"><i class="fa fa-th"></i> <span class="hidden-sm-down">Schema</span></a>
+                <a  class="list-group-item " id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile"  role="tab" aria-controls="v-pills-profile" aria-selected="false" data-parent="#sidebar"><i class="fa fa-list"></i> <span class="hidden-sm-down">Data</span></a>
+								<a  class="list-group-item " id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false" data-parent="#sidebar"><i class="fa fa-clock-o"></i> <span class="hidden-sm-down">Report</span></a>
+								<a  class="list-group-item " id="v-pills-chats-tab" data-toggle="pill" href="#v-pills-chats" role="tab" aria-controls="v-pills-chats" aria-selected="false" data-parent="#sidebar"><i class="fa fa-bar-chart-o"></i> <span class="hidden-sm-down">Charts</span></a>
+            </div>
+        </div>
+        <main class="col-md-9 col-xs-11 p-l-2 p-t-2">
+            <a href="#sidebar" data-toggle="collapse"><i class="fa fa-navicon fa-lg"></i></a>
+            <hr>
+            <div class="tab-content" id="v-pills-tabContent">
+								<div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+									<div ng-include="'/app/project/schema/schema.template.html'"></div>
+								</div>
+								<div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+									<div ng-include="'/app/project/data/data.template.html'"></div>
+								</div>
+								<div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+									<div ng-include="'/app/project/report/report.template.html'"></div>
+								</div>
+								</div>
+        </main>
+    </div>
 </div>

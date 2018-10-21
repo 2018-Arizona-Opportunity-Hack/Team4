@@ -9,9 +9,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 @Repository
 @Transactional
@@ -39,7 +42,10 @@ public class CreateDataDAO {
         for (Attribute a : od.getAttributes()) {
             if (dateColumns.contains(a.getName())) {
                 try {
-                    Date d = java.sql.Date.valueOf(a.getValue());
+
+                    DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH);
+                    LocalDateTime date = LocalDateTime.parse(a.getValue(), inputFormatter);
+                    Timestamp d = Timestamp.valueOf(date);
                     value = d.toString();
                 } catch (Exception e) {
                     value = null;
@@ -53,7 +59,7 @@ public class CreateDataDAO {
                 continue;
             }
 
-            if (od.getAttributes().indexOf(a) < od.getAttributes().size() - count - 1) {
+            if (od.getAttributes().indexOf(a) < od.getAttributes().size() - count) {
                 names.append(a.getName() + ",");
                 values.append("'" + value + "',");
             } else {
