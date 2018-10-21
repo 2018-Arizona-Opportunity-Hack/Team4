@@ -1,5 +1,12 @@
 
 <div>
-    <input type = "file" class="btn" file-model = "myFile"/>
-    <button ng-click = "uploadFile()" class="btn">upload me</button>
+    <div>
+            <label >Please use the sample CSV template available here:  </label>
+            <a class="btn btn-secondary" ng-href="{{configURL}}download-template/{{entityName}}" role="button">Download Template</a>
+    </div>
+    <br/>
+    <div>
+            <input type = "file" class="btn" file-model = "myFile"/>
+            <button ng-click = "uploadFile()" class="btn btn-primary">Upload</button>
+    </div>
 </div>

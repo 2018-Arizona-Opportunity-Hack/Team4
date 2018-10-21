@@ -1,7 +1,7 @@
 <div class="container-fluid" ng-controller="FormController" ng-init="initialize()">
 		<div class="form-group" ng-hide="isStateParam">
 				<label class="fontSize">Select an Entity :</label>
-				<select class="form-control" ng-model="entityName" ng-change="getEntityColumns()">
+				<select class="form-control" ng-model="entityName" ng-change="getEntityColumns()" style="width:40%">
 						<option ng-repeat="x in entityNames" ng-value="x">{{x}}</option>
 				</select>
 		</div>

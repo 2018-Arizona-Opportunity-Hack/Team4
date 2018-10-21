@@ -6,6 +6,7 @@
 
     function ReportController($scope,$http, fileUpload, $rootScope){
       $scope.initialize = function(){
+        $scope.chartType = 'line';  
         $scope.query = {};
         $scope.options = [{}];
         $scope.initSavedQueries();
@@ -85,7 +86,7 @@
       $scope.buildQuery = function(){
         let query = "";
         let select = "";
-        if ($scope.activeSel == 1) {
+        if ($scope.activeSel == 1 || $scope.activeSel == 2) {
             query = "select * from "+$scope.query.entityName+";";
         } else if ($scope.activeSel == 3 && $scope.query.full) {
             let xaxis = $scope.query.cond.select.one;
@@ -123,14 +124,16 @@
         });
       }
 
-      $scope.showData = async function(){
+      $scope.showData = async function(isCSV){
         let query = $scope.buildQuery();
-        $scope.tableData = await $scope.getQueryData({query, 'format':'json'});
+        $scope.tableData = await $scope.getQueryData({query, 'format': isCSV ? 'csv':'json'});
         //$scope.tableData = [["1","Test","90","2018-10-10 07:00:00.0"],["3","Test","909","2018-10-10 07:00:00.0"],["4","Test","9","2018-10-10 07:00:00.0"],["5","Test","1","2018-10-10 07:00:00.0"],["6","Test","3","2018-10-10 07:00:00.0"],["7","Test","4","2018-10-10 07:00:00.0"]]
-        $scope.$apply();
-        setTimeout(function() {
-            $('#table_id').DataTable();
-          });
+        if (!isCSV) {
+            $scope.$apply();
+            setTimeout(function() {
+                $('#table_id').DataTable();
+            });
+        }
       }
 
       $scope.exportCsv = function(){
@@ -146,73 +149,145 @@
             });
       }
 
-      $scope.generateCharts = async function(){
-        let query = $scope.buildQuery();
-        if(!query || query.length == 0){
-            return;
+      $scope.changeChart = function(chartType){
+        var chartFinal;
+        var chartTitle;
+        if(chartType=='line'){
+              chartFinal = 'spline';
+              chartTitle = 'Line Chart';
         }
-        var data = [[2,6],[3,5],[4,2],[5,1]];
-        $scope.tableData = await $scope.getQueryData({query, 'format':'json'});
-        var arrayNew = [];
-        for(var i=0;i<$scope.tableData.length;i++ ){ var innerArray = []; innerArray.push(($scope.tableData[0][0])); innerArray.push(Number($scope.tableData[0][1]));  arrayNew.push(innerArray);}
-        // var data = $scope.tableData;
+        else{
+          chartFinal = 'column';
+          chartTitle = 'Bar Chart';
+        }
+      var arrayNew = [];
+      for(var i=0;i<$scope.tableData.length;i++ ){ var innerArray = []; innerArray.push(($scope.tableData[0][0])); innerArray.push(Number($scope.tableData[0][1]));  arrayNew.push(innerArray);}
+      // var data = $scope.tableData;
 
-        Highcharts.chart('chartContainer', {
-            chart: {
-                type: 'spline',
-            },
-            // title: {
-            //     text: 'Atmosphere Temperature by Altitude'
-            // },
-            // subtitle: {
-            //     text: 'According to the Standard Atmosphere Model'
-            // },
-            xAxis: {
-                reversed: false,
-                title: {
-                    // enabled: true,
-                    text: 'xAxis'
-                },
-                labels: {
-                    format: '{value} '
-                },
-                maxPadding: 0.05,
-                showLastLabel: true
-            },
-            yAxis: {
-                title: {
-                    text: 'yAxis'
-                },
-                labels: {
-                    format: '{value}'
-                },
-                lineWidth: 2
-            },
-            legend: {
-                enabled: false
-            },
-            tooltip: {
-                headerFormat: '<b>{series.name}</b><br/>',
-                pointFormat: '{point.x} : {point.y}'
-            },
-            plotOptions: {
-                spline: {
-                    marker: {
-                        enable: false
-                    }
-                }
-            },
-            series: [{
-                // name: 'Temperature',
-                data: arrayNew
-            }]
-        });   
-        
-        
+      Highcharts.chart('chartContainer', {
+          chart: {
+              type: chartFinal,
+          },
+          title: {
+              text: chartTitle
+          },
+          // subtitle: {
+          //     text: 'According to the Standard Atmosphere Model'
+          // },
+          xAxis: {
+              reversed: false,
+              title: {
+                  // enabled: true,
+                  text: 'xAxis'
+              },
+              labels: {
+                  format: '{value} '
+              },
+              maxPadding: 0.05,
+              showLastLabel: true
+          },
+          yAxis: {
+              title: {
+                  text: 'yAxis'
+              },
+              labels: {
+                  format: '{value}'
+              },
+              lineWidth: 2
+          },
+          legend: {
+              enabled: false
+          },
+          tooltip: {
+              headerFormat: '<b>{series.name}</b><br/>',
+              pointFormat: '{point.x} : {point.y}'
+          },
+          plotOptions: {
+              spline: {
+                  marker: {
+                      enable: false
+                  }
+              }
+          },
+          series: [{
+              // name: 'Temperature',
+              data: arrayNew
+          }]
+      });   
+      
+    }
 
+    $scope.createCharts = function(chartType){
 
+    }
 
+    $scope.generateCharts = async function(){
+      let query = $scope.buildQuery();
+      if(!query || query.length == 0){
+          return;
       }
+      var data = [[2,6],[3,5],[4,2],[5,1]];
+      $scope.tableData = await $scope.getQueryData({query, 'format':'json'});
+      var arrayNew = [];
+      for(var i=0;i<$scope.tableData.length;i++ ){ var innerArray = []; innerArray.push(($scope.tableData[0][0])); innerArray.push(Number($scope.tableData[0][1]));  arrayNew.push(innerArray);}
+      // var data = $scope.tableData;
+
+      Highcharts.chart('chartContainer', {
+          chart: {
+              type: 'spline',
+          },
+          title: {
+              text: 'Line Chart'
+          },
+          // subtitle: {
+          //     text: 'According to the Standard Atmosphere Model'
+          // },
+          xAxis: {
+              reversed: false,
+              title: {
+                  // enabled: true,
+                  text: 'xAxis'
+              },
+              labels: {
+                  format: '{value} '
+              },
+              maxPadding: 0.05,
+              showLastLabel: true
+          },
+          yAxis: {
+              title: {
+                  text: 'yAxis'
+              },
+              labels: {
+                  format: '{value}'
+              },
+              lineWidth: 2
+          },
+          legend: {
+              enabled: false
+          },
+          tooltip: {
+              headerFormat: '<b>{series.name}</b><br/>',
+              pointFormat: '{point.x} : {point.y}'
+          },
+          plotOptions: {
+              spline: {
+                  marker: {
+                      enable: false
+                  }
+              }
+          },
+          series: [{
+              // name: 'Temperature',
+              data: arrayNew
+          }]
+      });   
+      
+      
+
+
+
+    }
 
     }
 
