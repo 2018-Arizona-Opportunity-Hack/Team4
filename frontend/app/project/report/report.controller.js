@@ -6,6 +6,8 @@
 
     function ReportController($scope,$http, fileUpload, $rootScope){
       $scope.initialize = function(){
+        $scope.xaxisNew;
+        $scope.yaxisNew;
         $scope.chartType = 'spline';  
         $scope.query = {};
         $scope.options = [{}];
@@ -179,7 +181,7 @@
               reversed: false,
               title: {
                   // enabled: true,
-                  text: 'xAxis'
+                  text: $scope.xaxisNew
               },
               labels: {
                   format: '{value} '
@@ -189,7 +191,7 @@
           },
           yAxis: {
               title: {
-                  text: 'yAxis'
+                  text: $scope.yaxisNew
               },
               labels: {
                   format: '{value}'
@@ -218,7 +220,7 @@
       
     }
 
-    $scope.createCharts = function(chartType, arrayNew){
+    $scope.createCharts = function(chartType, arrayNew,xAxisLabel,yAxisLabel){
         Highcharts.chart('chartContainer', {
             chart: {
                 type: chartType,
@@ -233,7 +235,7 @@
                 reversed: false,
                 title: {
                     // enabled: true,
-                    text: 'xAxis'
+                    text: xAxisLabel
                 },
                 labels: {
                     format: '{value} '
@@ -243,7 +245,7 @@
             },
             yAxis: {
                 title: {
-                    text: 'yAxis'
+                    text: yAxisLabel
                 },
                 labels: {
                     format: '{value}'
@@ -280,11 +282,16 @@
       $scope.tableData = await $scope.getQueryData({query, 'format':'json'});
       
       var arrayNew = [];
+      var xAxisLabel = query.split(" ")[1].split(',')[0];
+      var yAxisLabel = query.split(" ")[1].split(',')[1];
+
       for(var i=0;i<$scope.tableData.length;i++ ){ var innerArray = []; innerArray.push(($scope.tableData[0][0])); innerArray.push(Number($scope.tableData[0][1]));  arrayNew.push(innerArray);}
       // var data = $scope.tableData;
 
       $scope.arrayNew = arrayNew;
-      $scope.createCharts($scope.chartType,arrayNew);
+      $scope.xaxisNew = xAxisLabel;
+      $scope.yaxisNew = yAxisLabel;
+      $scope.createCharts($scope.chartType,arrayNew,xAxisLabel,yAxisLabel);
     }
 
     }
