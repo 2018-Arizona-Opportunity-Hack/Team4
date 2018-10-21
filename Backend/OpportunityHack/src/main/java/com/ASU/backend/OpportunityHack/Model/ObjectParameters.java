@@ -18,6 +18,8 @@ public class ObjectParameters {
 
     Boolean unique;
 
+    Boolean isObject;
+
     public String getName() {
         return name;
     }
@@ -48,5 +50,13 @@ public class ObjectParameters {
 
     public void setUnique(Boolean unique) {
         this.unique = unique;
+    }
+
+    public Boolean getObject() {
+        return isObject;
+    }
+
+    public void setObject(Boolean object) {
+        isObject = object;
     }
 }

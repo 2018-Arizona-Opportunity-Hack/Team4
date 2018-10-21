@@ -19,6 +19,7 @@ public class CreateObjectDAO {
 
     public Map<String, Object> createObject(ObjectSchema objectSchema){
         StringBuilder query = new StringBuilder("CREATE TABLE "+objectSchema.getTableName()+" (");
+        query.append("id SERIAL PRIMARY KEY,");
         for(ObjectParameters obj : objectSchema.getObjectParameters()){
             query.append(obj.getName());
             query.append(" ");
@@ -33,6 +34,7 @@ public class CreateObjectDAO {
         query.append(")");
         System.out.println(query);
         entityManager.createNativeQuery(query.toString()).executeUpdate();
+        if()
         return null;
     }
 
