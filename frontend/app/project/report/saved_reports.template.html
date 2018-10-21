@@ -2,7 +2,7 @@
     <p><h4>Saved Queries</h4></p>
     <div>
         <p ng-repeat="query in savedQueries" ng-class="curQuery == query.id ? 'highlight':''">
-            {{query.name}} <span ng-click="executeQuery(query.query); curQuery = query.id" class="csr-ptr">Execute</span>
+            {{query.name}} <button class="btn-secondary btn-xs btn" ng-click="executeQuery(query.query); curQuery = query.id" class="csr-ptr">Execute</button>
         </p>
     </div>
 </div>

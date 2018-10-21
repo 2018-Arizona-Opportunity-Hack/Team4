@@ -34,19 +34,21 @@
             {
                 id: 1,
                 query: 'select * from dharmesh1',
-                name: 'Query1'
+                name: 'Query1',
+                columns: ['col1','col2','col3']
             }, {
                 id: 2,
                 query: 'select * from donor',
-                name: 'Donor'
+                name: 'Donor',
+                columns: ['col1','col2','col3']
             },
 
         ];
       }
 
       $scope.executeQuery = function(query){
-        $scope.savedQueryData = await $scope.getQueryData({query, 'format':'json'});
-        
+        $scope.savedQueryData =  $scope.getQueryData({query, 'format':'json'});
+
 
       }
 
@@ -128,8 +130,10 @@
       }
 
 
-      $scope.generateCharts = function(){
+      $scope.generateCharts = async function(){
         let query = $scope.buildQuery();
+        $scope.tableData = await $scope.getQueryData({query, 'format':'json'});
+        
         $http.post(configData.url+"exportCsv", {'query':query})
             .then(function successCallback(response){
                 if(response.data != null){                    
