@@ -96,6 +96,9 @@ public class TablesandColumnsDAO {
         if (format.equals("csv")) {
             List<ObjectParameters> objectParameters = getTableColumns(tableName);
             for (ObjectParameters tmp : objectParameters) {
+                if (!stringList.get(1).equals("*") && !String.valueOf(stringList.get(1)).toLowerCase().contains(tmp.getName().toLowerCase())) {
+                    continue;
+                }
                 if (objectParameters.indexOf(tmp) != objectParameters.size() - 1) {
                     op = op + tmp.getName() + ",";
                 } else {
