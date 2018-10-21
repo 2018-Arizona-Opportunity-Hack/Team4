@@ -62,11 +62,16 @@
       }
 
       $scope.submit = function(){
+          $scope.entity.attributes.forEach((item) => {
+              if (!$scope.primaryCols.includes(item.dataType)) {
+                  item.isObject = true;
+                  item.name = item.dataType;
+              }
+          })
         $http.post(configData.url + 'objectSchema', $scope.entity)
             .then(function successCallback(response){
                 if(response.data != null){                    
                     console.log(response);
-                    $scope.getUserPostAnalytics();
                 }else{
                     //$scope.error = "Unable to fetch posts";
                 }
