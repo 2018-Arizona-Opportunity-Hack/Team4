@@ -16,7 +16,9 @@ build:
 deploy:
     stage: deploy
     script:
-        - sudo apt-get install python3-pip
+        - apt-get -qq update && apt-get -qq install -y python
+        - apt-get -qq update
+        - apt-get -qq install -y python-pip
         - pip install awscli --ignore-installed six
         - time =`date`
         - mv $ZIP_NAME "$ZIP_NAME-$time.jar"
