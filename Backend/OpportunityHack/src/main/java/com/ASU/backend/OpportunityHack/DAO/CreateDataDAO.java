@@ -2,28 +2,63 @@ package com.ASU.backend.OpportunityHack.DAO;
 
 import com.ASU.backend.OpportunityHack.Attribute;
 import com.ASU.backend.OpportunityHack.Model.ObjectData;
+import com.ASU.backend.OpportunityHack.Model.ObjectParameters;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 @Transactional
 public class CreateDataDAO {
     @PersistenceContext
     EntityManager entityManager;
+    @Autowired
+    TablesandColumnsDAO tablesandColumnsDAO;
 
     public String saveObject(ObjectData od) {
+        System.out.println(od.getEntityName());
+        System.out.println(od.getAttributes());
         StringBuilder names = new StringBuilder();
         StringBuilder values = new StringBuilder();
+        List<ObjectParameters> objectParameters = tablesandColumnsDAO.getTableColumns(od.getEntityName());
+        List<String> dateColumns = new ArrayList<>();
+        String value = "";
+        for (ObjectParameters o : objectParameters) {
+            if (o.getDataType().toLowerCase() == "timestamp") {
+                dateColumns.add(o.getName());
+                System.out.println(o.getName());
+            }
+        }
+        int count = 1;
         for (Attribute a : od.getAttributes()) {
-            if (od.getAttributes().indexOf(a) != od.getAttributes().size() - 1) {
+            if (dateColumns.contains(a.getName())) {
+                try {
+                    Date d = java.sql.Date.valueOf(a.getValue());
+                    value = d.toString();
+                } catch (Exception e) {
+                    value = null;
+                    e.printStackTrace();
+                }
+            } else {
+                value = a.getValue();
+            }
+            if (value == null) {
+                count++;
+                continue;
+            }
+
+            if (od.getAttributes().indexOf(a) < od.getAttributes().size() - count - 1) {
                 names.append(a.getName() + ",");
-                values.append("'" + a.getValue() + "',");
+                values.append("'" + value + "',");
             } else {
                 names.append(a.getName());
-                values.append("'" + a.getValue() + "'");
+                values.append("'" + value + "'");
             }
         }
         String sql = "INSERT INTO " + od.getEntityName() + "(" + names + ")" + " values (" + values + ") ";
