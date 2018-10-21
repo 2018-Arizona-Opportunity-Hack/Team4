@@ -13,7 +13,7 @@
             <div>
                 <div class="form-group" ng-repeat="x in objects">
                     <label>{{ x.name }}</label>
-                    <input type={{x.datatype}} class="form-control ng-pristine ng-valid ng-touched" placeholder={{x.name}} ng-required={{x.isMandatory}} ng-model="x.value">
+                    <input type={{x.dataType}} class="form-control ng-pristine ng-valid ng-touched" placeholder={{x.name}} ng-required={{x.isMandatory}} ng-model="x.value">
                 </div>
                 <button class="btn btn-primary" type="button" ng-click="submit()">submit</button>
             </div>
