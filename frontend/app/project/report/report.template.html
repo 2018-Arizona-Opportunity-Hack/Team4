@@ -1,0 +1,23 @@
+<div>
+    <ul class="nav nav-tabs" style="font-size: 15px">
+        <li class="active" ><a data-toggle="tab" href="#createReport">Create Report</a></li>
+        <li><a data-toggle="tab" href="#savedReports" >Saved Reports</a></li>
+        
+        
+    </ul>
+
+    <div class="tab-content">
+        <br>
+        <div id="createReport" class="tab-pane  active">
+            <div ng-include="'/app/project/report/create_report.template.html'"></div>
+            
+        </div>
+        <div id="savedReports" class="tab-pane fade">
+            <div ng-include="'/app/project/report/saved_reports.template.html'"></div>
+        
+        </div>
+
+    
+    </div>
+
+</div>

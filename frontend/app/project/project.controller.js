@@ -77,7 +77,7 @@
           $scope.dataTypes = $scope.dataTypes.concat($scope.related);
         }
       }
-    /// end of main all fns before this
+      /// end of main all fns before this
       
     }
 

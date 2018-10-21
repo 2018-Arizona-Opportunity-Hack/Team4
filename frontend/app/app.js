@@ -13,9 +13,12 @@
 			.state('home',{
 				url:'/',
 				controller: 'ProjectController',
-				templateUrl: 'app/project/main.view.html',
+				templateUrl: 'app/project/project.view.html',
 			})
-		    
+		    .state('data',{
+				url:'/data/?data',
+				templateUrl: 'app/project/data/data_entry.view.html',
+			})
 		 $urlRouterProvider.otherwise('/');
 	}
 

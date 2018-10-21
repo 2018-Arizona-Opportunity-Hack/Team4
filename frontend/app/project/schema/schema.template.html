@@ -1,0 +1,26 @@
+<div class="container-fluid">
+	<div >
+		<br/>
+		<ul class="nav nav-tabs" style="font-size: 15px">
+		    <li class="active" ng-click="updateOptions(1); activeSchemaTab = 1"><a data-toggle="tab" href="#objects">Objects</a></li>
+			<li><a data-toggle="tab" href="#events" ng-click="updateOptions(2); activeSchemaTab = 2">Events</a></li>
+		   
+		  </ul>
+
+		  <div class="tab-content">
+		  	<br>
+		  	<div id="objects" class="tab-pane  active">
+		  		<div ng-include="'/app/project/schema/schema_form.template.html'"></div>
+		  		
+		  	</div>
+		  	<div id="events" class="tab-pane fade">
+		  		<div ng-include="'/app/project/schema/schema_form.template.html'"></div>
+		  	
+			  </div>
+
+		    
+		  </div>
+
+		
+	</div>
+</div>
