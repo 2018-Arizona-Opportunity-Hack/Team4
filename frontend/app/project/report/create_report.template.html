@@ -14,7 +14,7 @@
             </div>
         </div>
       
-        <div ng-show="query.entityName.length>0" style="margin-left:15%">
+        <div ng-show="query.entityName.length>0" style="margin-left:30%">
             <input  type="checkbox" ng-model="query.full" ng-checked="{{query.full}}" ng-change="activeSel=0" id="ck"> <label class="fontSize" for="ck">Entire Data</label>
             <br/>
             <div ng-show="!query.full">
@@ -65,7 +65,7 @@
                                 <input class="form-control" type="text" placeholder="Value" ng-model="query.cond.filter[index].value">
                             </td>
                             <td>
-                                <i class="fa fa-plus fa-2x" ng-click="query.cond.filters.push({})"></i>
+                                <i class="fa fa-plus fa-2x csr-ptr" ng-click="query.cond.filters.push({})" ng-show="$index == 0"></i>
                             </td>
                         </tr>
                     </tbody>

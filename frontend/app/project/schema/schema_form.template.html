@@ -1,4 +1,4 @@
-<div ng-init="activeSchemaTab =1">
+<div>
 	<span class="fontSize" ng-show="activeSchemaTab == 1">Object Name :</span>
 	<span class="fontSize" ng-show="activeSchemaTab == 2">Event Name :</span>
 	
@@ -29,7 +29,7 @@
 					<input type="checkbox" class="form-control"  ng-model="col.isUnique" ng-disabled="primaryCols.indexOf(col.dataType)<0">
 			</div>
 			<div class="col col-md-2">
-					<button ng-click="addNewAttribute()" ng-show="$index == 0"><i class="fa fa-plus fa-2x"></i></button>
+					<i ng-click="addNewAttribute()" ng-show="$index == 0"  class="fa fa-plus fa-2x csr-ptr"></i>
 			</div>
 		</div>
 	<button class="btn btn-primary" type="button" ng-click="submit()">submit</button>
