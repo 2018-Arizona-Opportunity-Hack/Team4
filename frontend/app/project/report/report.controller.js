@@ -9,7 +9,7 @@
         $scope.query = {};
         $scope.options = [{}];
         $scope.initSavedQueries();
-        
+        $scope.activeSel;
         $scope.tableData = [];
 
         // $http.get(configData.url+"/")
