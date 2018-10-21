@@ -92,6 +92,16 @@ public class ObjectDataController {
         return tablesandColumnsDAO.getTableDataToExport(query.getQuery().toLowerCase(), query.getFormat().toLowerCase());
     }
 
+    @RequestMapping(value = "/export/{entity}")
+    @ResponseBody
+    public String exportEntity1(@PathVariable String entity, HttpServletResponse response) {
+        response.setContentType("application/csv");
+        String fileSuffix = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+        response.setHeader("Content-Disposition", "attachment; filename=\"" + entity + "-" + fileSuffix + ".csv\"");
+        return tablesandColumnsDAO.getTableDataToExport("select * from " + entity, "csv");
+    }
+
+
 //    private String mapUnique(boolean u) {
 //        if (u == null) {
 //            return "not-unique";
