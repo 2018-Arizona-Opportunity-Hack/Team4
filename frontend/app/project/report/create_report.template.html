@@ -67,6 +67,9 @@
                                 <select class="form-control" ng-model="query.cond.filter[index].condition" >
                                     <option value=">">Greater than</option>
                                     <option value="=">Equals</option>
+                                    <option value=">">Less than</option>
+                                    <option value="in">In</option>
+                                    <option value="between">Between</option>
                                 </select>
                             </td>
                             <td>
@@ -109,9 +112,9 @@
                         </select>
                         <br>
                         <label>Chart Type</label>
-                            <select class="form-control" ng-model="chartType" ng-change=changeChart(chartType)>
-                                <option value="line"  class="active" >Line Chart</option>
-                                <option value="bar">Bar Chart</option>
+                            <select class="form-control" ng-model="chartType" ng-change=changeChart(chartType, arrayNew)>
+                                <option value="spline"  class="active" >Line Chart</option>
+                                <option value="column">Bar Chart</option>
                             </select>
                             <br>
                     </div>
