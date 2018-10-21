@@ -16,8 +16,8 @@
 				templateUrl: 'app/project/project.view.html',
 			})
 		    .state('data',{
-				url:'/data/?data',
-				templateUrl: 'app/project/data/data_entry.view.html',
+				url:'/data/:entity',
+				templateUrl: 'app/project/data/data_entry.template.html',
 			})
 		 $urlRouterProvider.otherwise('/');
 	}

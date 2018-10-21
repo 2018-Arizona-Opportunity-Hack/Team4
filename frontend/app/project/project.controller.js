@@ -7,22 +7,24 @@
 
     function ProjectController($scope,$http, fileUpload){
       $scope.initialize = function(){
-        console.log("logged");
         $scope.entity = {}
         $scope.entity.entityName = "";
-        $scope.entity.attributes = [
-        
-          {}
-        ];
+        $scope.entity.attributes = [{}];
         $scope.primary = ['Integer', 'String', 'Date'];
-        $scope.related = ['Donor', 'Events'];
+        $scope.related = [];
         $scope.dataTypes = $scope.primary;
 
-        $http.get(configData.url+"/"+$scope.userData)
+        
+        $http.get(configData.url+"/getTableColumnMapping")
             .then(function successCallback(response){
-                if(response.data != null){                    
+                if(response.data != null){   
+                    response.data.forEach(ele => {
+                        if(ele.isEventTable){
+                            $scope.related.push(ele.entityName)
+                        }
+                        
+                    });                
                     console.log(response);
-                    $scope.getUserPostAnalytics();
                 }else{
                     //$scope.error = "Unable to fetch posts";
                 }
@@ -35,6 +37,7 @@
 
 
       }
+
       $scope.uploadFile = function(){
         var file = $scope.$root.myFile;
         
@@ -44,6 +47,7 @@
         var uploadUrl = "/fileUpload";
         fileUpload.uploadFileToUrl(file, uploadUrl);
      };
+
       $scope.addNewAttribute = function(){
         var temp = {
           };
@@ -70,6 +74,7 @@
                 
             });
       }
+
       $scope.updateOptions = function(tab) {
         if(tab == 1) {
           $scope.dataTypes.splice(3); 
