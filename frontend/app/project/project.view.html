@@ -10,49 +10,8 @@
 		  <div class="tab-content">
 		  	<br>
 		  	<div id="objects" class="tab-pane  active">
-		  		<div>
-		  			Object Name:
-		  			<input type="text" class="form-control" placeholder="Object Name" ng-model="entity.entityName">
-		  		</div>
-		  		<div>
-		  			<p>Attributes</p>
-	  				<table>
-  						<thead>
-  							<th>Type</th>
-  							<th>Attribute Name</th>
-  							<th>Is Mandatory</th>
-  							<th>Is Unique</th>
-  						</thead>
-  						<tbody>
-  							<tr ng-repeat="col in entity.attributes">
-  								<td>
-  									<select class="form-control" ng-model="col.dataType">
-  										<option val="" style="display: none">Data Type</option>
-  										<option val="int">Integer</option>
-  										<option val="str">String</option>
-  										<option val="date">Date</option>
-  									</select>
-  								</td>
-  								<td>
-  									<input type="text" class="form-control"  ng-model="col.name" placeholder="">
-  								</td>
-  								<td>
-  									<input type="checkbox" class="form-control"  ng-model="col.isMandatory">
-  								</td>
-  								<td>
-									<input type="checkbox" class="form-control"  ng-model="col.isUnique">
-  								</td>
-  								<td>
-									<button ng-click="addNewAttribute()" ng-show="$index == 0"><i class="fa fa-plus"></i></button>
-  								</td>
-  							</tr>
-  							
-  						</tbody>
-	  				</table>
-	  				<button class="btn btn-primary" type="button" ng-click="submit()">submit</button>
-
-		  		</div>
-		  	
+		  		<div ng-include="'/app/project/form.template.html'"></div>
+		  		
 		  	</div>
 		  	<div id="events" class="tab-pane fade">
 		  		Events
