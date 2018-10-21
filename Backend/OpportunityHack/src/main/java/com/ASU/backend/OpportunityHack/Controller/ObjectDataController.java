@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 public class ObjectDataController {
     @Autowired
     CreateDataDAO createDataDAO;

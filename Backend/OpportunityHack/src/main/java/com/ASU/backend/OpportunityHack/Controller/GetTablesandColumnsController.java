@@ -4,15 +4,13 @@ import com.ASU.backend.OpportunityHack.DAO.TablesandColumnsDAO;
 import com.ASU.backend.OpportunityHack.Model.ObjectParameters;
 import com.ASU.backend.OpportunityHack.Model.ObjectSchema;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 public class GetTablesandColumnsController {
 
     @Autowired
