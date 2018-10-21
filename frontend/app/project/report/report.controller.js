@@ -164,7 +164,7 @@
           chartTitle = 'Bar Chart';
         }
       var arrayNew = [];
-      for(var i=0;i<$scope.tableData.length;i++ ){ var innerArray = []; innerArray.push(($scope.tableData[0][0])); innerArray.push(Number($scope.tableData[0][1]));  arrayNew.push(innerArray);}
+      for(var i=0;i<$scope.tableData.length;i++ ){ var innerArray = []; innerArray.push(($scope.tableData[i][0])); innerArray.push(Number($scope.tableData[i][1]));  arrayNew.push(innerArray);}
       // var data = $scope.tableData;
 
       Highcharts.chart('chartContainer', {
@@ -285,7 +285,7 @@
       var xAxisLabel = query.split(" ")[1].split(',')[0];
       var yAxisLabel = query.split(" ")[1].split(',')[1];
 
-      for(var i=0;i<$scope.tableData.length;i++ ){ var innerArray = []; innerArray.push(($scope.tableData[0][0])); innerArray.push(Number($scope.tableData[0][1]));  arrayNew.push(innerArray);}
+      for(var i=0;i<$scope.tableData.length;i++ ){ var innerArray = []; innerArray.push(($scope.tableData[i][0])); innerArray.push(Number($scope.tableData[i][1]));  arrayNew.push(innerArray);}
       // var data = $scope.tableData;
 
       $scope.arrayNew = arrayNew;
