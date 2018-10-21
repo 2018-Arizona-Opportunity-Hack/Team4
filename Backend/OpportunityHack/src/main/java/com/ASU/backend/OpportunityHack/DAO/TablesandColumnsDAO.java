@@ -72,6 +72,7 @@ public class TablesandColumnsDAO {
         String op = "";
         List<String> stringList = Arrays.asList(query.toLowerCase().split(" "));
         String tableName = stringList.get(stringList.indexOf("from") + 1);
+        System.out.println("****************************************************************************");
         if (format.equals("json")) {
             ObjectMapper mapper = new ObjectMapper();
             List<List<String>> al = new ArrayList<>();
@@ -86,6 +87,7 @@ public class TablesandColumnsDAO {
             }
             jsonResp.setData(al);
             try {
+                System.out.println(mapper.writeValueAsString(jsonResp));
                 return mapper.writeValueAsString(jsonResp);
             } catch (Exception e) {
                 e.printStackTrace();

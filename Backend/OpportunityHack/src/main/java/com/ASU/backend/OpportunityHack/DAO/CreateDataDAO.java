@@ -70,7 +70,7 @@ public class CreateDataDAO {
         String sql = "INSERT INTO " + od.getEntityName() + "(" + names + ")" + " values (" + values + ") ";
         System.out.println(sql);
         entityManager.createNativeQuery(sql).executeUpdate();
-        return "ok";
+        return "";
     }
 
 }
