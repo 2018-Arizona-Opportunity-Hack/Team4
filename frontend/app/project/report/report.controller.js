@@ -38,7 +38,34 @@
       }
 
       $scope.generateChart = function(){
-          
+        let query = "";
+        let select = "";
+        let xaxis = $scope.query.cond.select.one;
+        let yaxis = $scope.query.cond.select.two;
+
+        if(!xaxis || xaxis.length == 0){
+            return;
+        }
+        if(!yaxis || yaxis.length == 0){
+            return;
+        }
+
+        if($scope.query.full){
+            query = "select "+xaxis+","+yaxis+" from "+$scope.query.entityName+";";
+        }
+        $http.post(configData.url+"exportCsv", {'query':query})
+            .then(function successCallback(response){
+                if(response.data != null){                    
+                    console.log(response);
+                }else{
+                    //$scope.error = "Unable to fetch posts";
+                }
+
+            }, function errorCallback(response){
+                console.log("Error updating views");
+                //$scope.error = "Unable to fetch posts";
+                
+            });
       }
 
     }

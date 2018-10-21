@@ -44,12 +44,12 @@
                 <div ng-show="activeSel == 3">
                     <div>
                         <label>x-axis</label>
-                        <select class="form-control" ng-model="query.cond.where.one" ng-change=generateChart()>
+                        <select class="form-control" ng-model="query.cond.select.one" ng-change=generateChart()>
                             <option value="" style="display:none">Select X-axis</option>
                             <option ng-repeat="x in allEntityDetails[query.selEntityIndex].attributes" ng-value="x.name">{{x.name}}</option>
                         </select>
                         <label>y-axis</label> 
-                        <select class="form-control" ng-model="query.cond.where.two"  ng-change=generateChart()>
+                        <select class="form-control" ng-model="query.cond.select.two"  ng-change=generateChart()>
                             <option value="" style="display:none">Select Y-axis</option>
                             <option ng-repeat="x in allEntityDetails[query.selEntityIndex].attributes" ng-value="x.name">{{x.name}}</option>
                         </select>
