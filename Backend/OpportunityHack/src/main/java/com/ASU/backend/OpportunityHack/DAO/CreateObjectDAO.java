@@ -34,7 +34,7 @@ public class CreateObjectDAO {
         query.append(")");
         System.out.println(query);
         entityManager.createNativeQuery(query.toString()).executeUpdate();
-        if()
+//        if()
         return null;
     }
 
