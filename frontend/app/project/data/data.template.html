@@ -4,6 +4,7 @@
 				<select class="form-control" ng-model="entityName" ng-change="getEntityColumns()" style="width:40%">
 						<option ng-repeat="x in entityNames" ng-value="x">{{x}}</option>
 				</select>
+				<a class="btn btn-secondary" ng-href="{{window.location.origin}}index.html#/data/{{entityName}}" ng-show="entityName" role="button" target="_blank">Sharable Link</a>
 		</div>
 	<div >
 		<br/>
