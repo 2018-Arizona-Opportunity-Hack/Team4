@@ -1,4 +1,4 @@
 var config = {
-    url:"http://127.0.0.1:8080/"
+    url:"http://opportunityhack-env.97hs2hh9th.us-west-2.elasticbeanstalk.com/"
 };
 var configData = config;
