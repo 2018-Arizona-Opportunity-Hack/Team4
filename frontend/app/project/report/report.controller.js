@@ -6,6 +6,7 @@
 
     function ReportController($scope,$http, fileUpload, $rootScope){
       $scope.initialize = function(){
+          $scope.configURL = configData.url;
         $scope.xaxisNew;
         $scope.yaxisNew;
         $scope.chartType = 'spline';  
