@@ -99,25 +99,34 @@
                     <p>Data will be downloaded shortly...</p>
                 </div>
                 <div ng-show="activeSel == 3">
-                    <div>
+                        <div class="row">
+                        <div class="col-md-4">
+                        <br>            
                         <label>x-axis</label>
                         <select class="form-control" ng-model="query.cond.select.one" ng-change=generateCharts()>
                             <option value="" style="display:none">Select X-axis</option>
                             <option ng-repeat="x in allEntityDetails[query.selEntityIndex].attributes" ng-value="x.name">{{x.name}}</option>
                         </select>
+                    </div>
+                    <div class="col-md-4">
+                        <br>
                         <label>y-axis</label> 
                         <select class="form-control" ng-model="query.cond.select.two"  ng-change=generateCharts()>
                             <option value="" style="display:none">Select Y-axis</option>
                             <option ng-repeat="x in allEntityDetails[query.selEntityIndex].attributes" ng-value="x.name">{{x.name}}</option>
                         </select>
+                    </div>
+                        <div class="col-md-4">
                         <br>
                         <label>Chart Type</label>
                             <select class="form-control" ng-model="chartType" ng-change="changeChart(chartType, arrayNew)">
                                 <option value="spline"  class="active" >Line Chart</option>
                                 <option value="column">Bar Chart</option>
                             </select>
+                            </div>
                             <br>
                     </div>
+                    <br>
                     <div id="chartContainer"></div>
                 </div>
 
