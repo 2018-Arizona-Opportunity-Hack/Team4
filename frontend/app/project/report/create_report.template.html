@@ -7,15 +7,16 @@
                     <span>{{entity.entityName}}</span>
                     <input type="checkbox" ng-value="entity.isSelected">
                 </div> -->
-                <select class="form-control" ng-model="query.entityName">
+                <select class="form-control" ng-model="query.entityName" ng-change="query.full = true; setSelEntityIndex()">
+                    <option value="" style="display:none">Select Entity</option>
                     <option ng-repeat="x in allEntityDetails" ng-value="x.entityName">{{x.entityName}}</option>
                 </select>
             </div>
         </div>
-        <div>
-            <input type="checkbox" ng-model="query.full" ng-checked="true"> Entire Data
-            <button type="btn btn-info">Show Data</button>
-            <button type="btn btn-info">Download CSV</button>
+        <br/>
+        <div ng-show="query.entityName.length>0">
+            <input type="checkbox" ng-model="query.full" ng-checked="{{query.full}}"> Entire Data
+            <br/>
             <div ng-show="!query.full">
                 <table>
                     <thead>
@@ -26,6 +27,34 @@
                         <th></th>
                     </thead>
                 </table>
+            </div>
+            <br/>
+            <div>
+                <button class="btn btn-secondary" ng-click="activeSel = 1; getData(); ">Show Data</button>
+                <button class="btn btn-secondary" ng-click="activeSel = 2; downloadCsv()">Download CSV</button>
+                <button class="btn btn-secondary" ng-click="activeSel = 3;" >Generate Charts</button>
+            </div>
+            <div>
+                <div ng-show="activeSel == 1">
+
+                </div>
+                <div ng-show="activeSel == 2">
+                    <p>Data will be downloaded shortly...</p>
+                </div>
+                <div ng-show="activeSel == 3">
+                    <div>
+                        <label>x-axis</label>
+                        <select class="form-control" ng-model="query.cond.where.one" ng-change=generateChart()>
+                            <option value="" style="display:none">Select X-axis</option>
+                            <option ng-repeat="x in allEntityDetails[query.selEntityIndex].attributes" ng-value="x.name">{{x.name}}</option>
+                        </select>
+                        <label>y-axis</label> 
+                        <select class="form-control" ng-model="query.cond.where.two"  ng-change=generateChart()>
+                            <option value="" style="display:none">Select Y-axis</option>
+                            <option ng-repeat="x in allEntityDetails[query.selEntityIndex].attributes" ng-value="x.name">{{x.name}}</option>
+                        </select>
+                    </div>
+                </div>
 
             </div>
         </div>

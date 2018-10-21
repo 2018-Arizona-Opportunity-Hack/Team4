@@ -2,9 +2,9 @@
 (function(){
     var app = angular.module('app');
     app.controller('ReportController',ReportController);
-    ReportController.$inject = ['$scope','$http', 'fileUpload'];
+    ReportController.$inject = ['$scope','$http', 'fileUpload', '$rootScope'];
 
-    function ReportController($scope,$http, fileUpload){
+    function ReportController($scope,$http, fileUpload, $rootScope){
       $scope.initialize = function(){
         $scope.query = "";
         $scope.options = [{}];
@@ -25,6 +25,22 @@
 
 
       }
+
+      $scope.setSelEntityIndex = function(){
+          let count = 0;
+          $rootScope.allEntityDetails.forEach(e => {
+              if(e.entityName == $scope.query.entityName){
+                $scope.query.selEntityIndex = count;
+                
+              }
+              count++;
+          });
+      }
+
+      $scope.generateChart = function(){
+          
+      }
+
     }
 
 })();

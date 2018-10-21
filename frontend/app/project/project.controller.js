@@ -2,10 +2,10 @@
 (function(){
     var app = angular.module('app');
     app.controller('ProjectController',ProjectController);
-    ProjectController.$inject = ['$scope','$http', 'fileUpload'];
+    ProjectController.$inject = ['$scope','$http', 'fileUpload', '$rootScope'];
     console.log("login cont outside");
 
-    function ProjectController($scope,$http, fileUpload){
+    function ProjectController($scope,$http, fileUpload, $rootScope){
       $scope.initialize = function(){
         $scope.entity = {}
         $scope.entity.entityName = "";
@@ -25,9 +25,10 @@
                             $scope.related.push({'value': ele.entityName, 'text':ele.entityName})
                         }
                         $scope.entityNames.push(ele.entityName);
-                        $scope.allEntityDetails = response.data;
+                        ele.full = true;
                         
-                    });                
+                    });     
+                    $rootScope.allEntityDetails = response.data;           
                     console.log(response);
                 }else{
                     //$scope.error = "Unable to fetch posts";
