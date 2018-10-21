@@ -153,7 +153,7 @@
       $scope.changeChart = function(chartType){
         var chartFinal;
         var chartTitle;
-        if(chartType=='line'){
+        if(chartType=='spline'){
               chartFinal = 'spline';
               chartTitle = 'Line Chart';
         }
@@ -167,7 +167,7 @@
 
       Highcharts.chart('chartContainer', {
           chart: {
-              type: chartFinal,
+              type: chartType,
           },
           title: {
               text: chartTitle
