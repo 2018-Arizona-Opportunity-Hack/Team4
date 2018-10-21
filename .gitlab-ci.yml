@@ -20,7 +20,7 @@ build:
         - cd target/
         - mv "$ZIP_NAME.jar" "$ZIP_NAME-$time.jar"
         - aws s3 cp "$ZIP_NAME-$time.jar" "s3://elasticbeanstalk-us-west-2-631867123265/"
-        - aws elasticbeanstalk create-application-version --application-name OpportunityHack --version-label "$ZIP_NAME-$time" --description "$ZIP_NAME-$time" --source-bundle S3Bucket="s3://elasticbeanstalk-us-west-2-631867123265/",S3Key="$ZIP_NAME-$time.jar" --auto-create-application
-        - aws elasticbeanstalk update-environment --application-name OpportunityHack --environment-name Opportunityhack-env  --version-label "$time"
-
-
+        - aws elasticbeanstalk create-application-version --application-name OpportunityHack --version-label "$ZIP_NAME-$time" --description "$ZIP_NAME-$time" --source-bundle S3Bucket="elasticbeanstalk-us-west-2-631867123265",S3Key="$ZIP_NAME-$time.jar" --auto-create-application
+        - aws elasticbeanstalk update-environment --application-name OpportunityHack --environment-name Opportunityhack-env  --version-label "$ZIP_NAME-$time"
+        - cd ../../..
+        - aws s3 cp frontend/ s3://frontendopportunityhack/ --recursive
