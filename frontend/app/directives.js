@@ -23,9 +23,9 @@ angular.module('app')
 	 .service('fileUpload', ['$http', function ($http) {
 		this.uploadFileToUrl = function(file, uploadUrl){
 		   var fd = new FormData();
-		   fd.append('file', file);
+		   fd.append('data', file);
 		
-		   $http.post(uploadUrl, fd, {
+		   $http.post(configData.url+  uploadUrl, fd, {
 			  transformRequest: angular.identity,
 			  headers: {'Content-Type': undefined}
 		   })

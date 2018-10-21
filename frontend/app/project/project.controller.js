@@ -57,7 +57,7 @@
         console.log('file is ' );
         console.dir(file);
         
-        var uploadUrl = "/fileUpload";
+        var uploadUrl = "bulk-import";
         fileUpload.uploadFileToUrl(file, uploadUrl);
      };
 

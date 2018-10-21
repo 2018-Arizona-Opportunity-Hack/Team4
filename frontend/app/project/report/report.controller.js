@@ -59,7 +59,7 @@
       }
 
       $scope.getQueryData = function(options){
-        return $http.post("http://10.2.19.195:5000/"+"export", options)
+        return $http.post(configData.url+"export", options)
         .then(function successCallback(response){
             let result = [];
             if(response.data != null){   
