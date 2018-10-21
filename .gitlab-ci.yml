@@ -24,3 +24,4 @@ build:
         - aws elasticbeanstalk update-environment --application-name OpportunityHack --environment-name Opportunityhack-env  --version-label "$ZIP_NAME-$time"
         - cd ../../..
         - aws s3 cp frontend/ s3://frontendopportunityhack/ --recursive
+   when: manual
