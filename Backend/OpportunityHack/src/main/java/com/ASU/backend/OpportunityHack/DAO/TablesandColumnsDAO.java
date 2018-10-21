@@ -51,11 +51,11 @@ public class TablesandColumnsDAO {
 
     public String modifyDataTypeName(String value){
         if(value.contains("char"))
-            return "str";
+            return "VARCHAR(500)";
         if (value.contains("int"))
-            return "int";
+            return "INTEGER";
         if (value.contains("time"))
-            return "date";
+            return "timestamp";
         return "";
     }
 
