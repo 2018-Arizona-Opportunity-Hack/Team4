@@ -67,7 +67,6 @@ public class TablesandColumnsDAO {
 
     public String getTableDataToExport(String query, String format) {
         //String s = "SELECT * FROM " + tableName;
-
         Query q = entityManager.createNativeQuery(query);
         List<Object[]> listOfRows = q.getResultList();
         String op = "";
