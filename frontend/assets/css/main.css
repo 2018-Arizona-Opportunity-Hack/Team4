@@ -236,4 +236,9 @@ img {
     margin-left: 100px;
     margin-top: -70px;
 }
-
+.main-div .my-nav{
+	background-color: gray;
+}
+.main-div .my-nav a{
+	border-radius: 0px;
+}

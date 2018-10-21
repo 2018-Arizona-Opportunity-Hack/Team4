@@ -1,0 +1,26 @@
+<div class="container-fluid" >
+	<div >
+		<br/>
+		<ul class="nav nav-tabs" style="font-size: 15px">
+		    <li class="active" ><a data-toggle="tab" href="#dataEntry">Data Entry</a></li>
+			<li><a data-toggle="tab" href="#csv" >CSV</a></li>
+		   
+		  </ul>
+
+		  <div class="tab-content">
+		  	<br>
+		  	<div id="dataEntry" class="tab-pane  active">
+		  		<div ng-include="'/app/project/csv.view.html'"></div>
+		  		
+		  	</div>
+		  	<div id="csv" class="tab-pane fade">
+		  		<div ng-include="'/app/project/csv.template.html'"></div>
+		  	
+			  </div>
+
+		    
+		  </div>
+
+		
+	</div>
+</div>

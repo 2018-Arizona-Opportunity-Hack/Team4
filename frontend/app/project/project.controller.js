@@ -2,10 +2,10 @@
 (function(){
     var app = angular.module('app');
     app.controller('ProjectController',ProjectController);
-    ProjectController.$inject = ['$scope','$state','$rootScope','$http'];
+    ProjectController.$inject = ['$scope','$http', 'fileUpload'];
     console.log("login cont outside");
 
-    function ProjectController($scope,$state,$rootScope,$http){
+    function ProjectController($scope,$http, fileUpload){
       $scope.initialize = function(){
         console.log("logged");
         $scope.entity = {}
@@ -35,7 +35,15 @@
 
 
       }
-
+      $scope.uploadFile = function(){
+        var file = $scope.$root.myFile;
+        
+        console.log('file is ' );
+        console.dir(file);
+        
+        var uploadUrl = "/fileUpload";
+        fileUpload.uploadFileToUrl(file, uploadUrl);
+     };
       $scope.addNewAttribute = function(){
         var temp = {
           };
@@ -65,7 +73,7 @@
       $scope.updateOptions = function(tab) {
         if(tab == 1) {
           $scope.dataTypes.splice(3); 
-        } else {
+        } else if (tab == 2) {
           $scope.dataTypes = $scope.dataTypes.concat($scope.related);
         }
       }

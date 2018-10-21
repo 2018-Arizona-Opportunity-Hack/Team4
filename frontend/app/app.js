@@ -13,7 +13,7 @@
 			.state('home',{
 				url:'/',
 				controller: 'ProjectController',
-				templateUrl: 'app/project/project.view.html',
+				templateUrl: 'app/project/main.view.html',
 			})
 		    
 		 $urlRouterProvider.otherwise('/');
