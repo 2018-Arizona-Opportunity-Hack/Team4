@@ -15,7 +15,10 @@
         </div>
       
         <div ng-show="query.entityName.length>0" style="margin-left:15%">
-            <input type="checkbox" ng-model="query.full" ng-checked="{{query.full}}" ng-change="activeSel=0" id="ck"> <label for="ck">Entire Data</label>
+                <label class="switch">
+                    <input type="checkbox" ng-model="query.full" ng-checked="{{query.full}}" ng-change="activeSel=0" id="ck"> <label for="ck">Entire Data</label>
+                    <span class="slider round"></span>
+                </label>
             <br/>
             <div ng-show="!query.full">
                 <div>
@@ -73,13 +76,13 @@
             </div>
             <br/>
             <div>
-                <button class="btn btn-secondary" ng-click="activeSel = 1; getData(); ">Show Data</button>
+                <button class="btn btn-secondary" ng-click="activeSel = 1; showData(); ">Show Data</button>
                 <button class="btn btn-secondary" ng-click="activeSel = 2; downloadCsv()">Download CSV</button>
                 <button class="btn btn-secondary" ng-click="activeSel = 3; generateCharts();">Generate Charts</button>
             </div>
             <div>
                 <div ng-show="activeSel == 1">
-
+                    <div ng-include="'/app/project/report/data_table.template.html'"></div>
                 </div>
                 <div ng-show="activeSel == 2">
                     <p>Data will be downloaded shortly...</p>

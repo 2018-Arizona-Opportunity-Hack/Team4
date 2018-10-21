@@ -8,6 +8,7 @@
       $scope.initialize = function(){
         $scope.query = "";
         $scope.options = [{}];
+        $scope.tableData = [];
 
         // $http.get(configData.url+"/")
         //     .then(function successCallback(response){
@@ -40,28 +41,51 @@
       $scope.buildQuery = function(){
         let query = "";
         let select = "";
-        let xaxis = $scope.query.cond.select.one;
-        let yaxis = $scope.query.cond.select.two;
+        if ($scope.activeSel == 1) {
+            query = "select * from "+$scope.query.entityName+";";
+        } else if ($scope.activeSel == 3 && $scope.query.full) {
+            let xaxis = $scope.query.cond.select.one;
+            let yaxis = $scope.query.cond.select.two;
 
-        if(!xaxis || xaxis.length == 0){
-            return;
-        }
-        if(!yaxis || yaxis.length == 0){
-            return;
-        }
-
-        if($scope.query.full){
+            if(!xaxis || xaxis.length == 0){
+                return;
+            }
+            if(!yaxis || yaxis.length == 0){
+                return;
+            }
             query = "select "+xaxis+","+yaxis+" from "+$scope.query.entityName+";";
         }
         return query;
       }
 
-      $scope.getQueryData = function(query){
+      $scope.getQueryData = function(options){
+        return $http.post("http://10.2.19.195:5000/"+"export", options)
+        .then(function successCallback(response){
+            let result = [];
+            if(response.data != null){   
+                response.data.data.forEach(ele => {
+                    result.push(ele);
+                });                
+                return result;
+                console.log(response);
+            }else{
+                //$scope.error = "Unable to fetch posts";
+            }
 
+        }, function errorCallback(response){
+            console.log("Error updating views");
+            //$scope.error = "Unable to fetch posts";
+            
+        });
       }
 
-      $scope.showData = function(){
+      $scope.showData = async function(){
         let query = $scope.buildQuery();
+        //$scope.tableData = await $scope.getQueryData({query, 'format':'json'});
+        $scope.tableData = [["1","Test","90","2018-10-10 07:00:00.0"],["3","Test","909","2018-10-10 07:00:00.0"],["4","Test","9","2018-10-10 07:00:00.0"],["5","Test","1","2018-10-10 07:00:00.0"],["6","Test","3","2018-10-10 07:00:00.0"],["7","Test","4","2018-10-10 07:00:00.0"]]
+        setTimeout(function() {
+            $('#table_id').DataTable();
+          }, 500);
       }
 
 

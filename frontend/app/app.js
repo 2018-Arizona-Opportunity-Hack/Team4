@@ -19,6 +19,10 @@
 				url:'/data/:entity',
 				templateUrl: 'app/project/data/data_entry.template.html',
 			})
+			.state('table',{
+				url:'/table',
+				templateUrl: 'app/project/report/data_table.template.html',
+			})
 		 $urlRouterProvider.otherwise('/');
 	}
 

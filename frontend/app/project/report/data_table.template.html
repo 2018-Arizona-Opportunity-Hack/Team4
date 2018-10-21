@@ -1,0 +1,20 @@
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<div class="container">
+        <div class="panel">
+        <div class="panel-body" >
+            <table id="table_id" class="display">
+                <thead>
+                    <tr>
+                        <th ng-repeat="col in allEntityDetails[query.selEntityIndex].attributes">{{col.name}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in tableData">
+                        <td ng-repeat="i in item">{{i}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+      </div>
+      </div>
