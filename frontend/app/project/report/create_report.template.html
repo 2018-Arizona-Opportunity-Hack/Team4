@@ -1,7 +1,7 @@
 <div ng-controller="ReportController" ng-init="initialize()">
     <div>
         <div class="pull-left" style="margin-right: 5%">
-            <p>Entities</p>
+            <p class="fontSize">Entities</p>
             <div>
                 <!-- <div ng-repeat="entity in allEntityDetails">
                     <span>{{entity.entityName}}</span>
@@ -15,7 +15,7 @@
         </div>
       
         <div ng-show="query.entityName.length>0" style="margin-left:15%">
-            <input type="checkbox" ng-model="query.full" ng-checked="{{query.full}}" ng-change="activeSel=0" id="ck"> <label for="ck">Entire Data</label>
+            <input  type="checkbox" ng-model="query.full" ng-checked="{{query.full}}" ng-change="activeSel=0" id="ck"> <label class="fontSize" for="ck">Entire Data</label>
             <br/>
             <div ng-show="!query.full">
                 <div>
@@ -73,9 +73,9 @@
             </div>
             <br/>
             <div>
-                <button class="btn btn-secondary" ng-click="activeSel = 1; getData(); ">Show Data</button>
-                <button class="btn btn-secondary" ng-click="activeSel = 2; downloadCsv()">Download CSV</button>
-                <button class="btn btn-secondary" ng-click="activeSel = 3; generateCharts();">Generate Charts</button>
+                <button class="btn btn-secondary fa fa-custom fa-list" ng-click="activeSel = 1; getData(); "> Show Data</button>
+                <button class="btn btn-secondary fa fa-custom fa fa-th" ng-click="activeSel = 2; downloadCsv()"> Download CSV</button>
+                <button class="btn btn-secondary fa fa-custom fa-bar-chart-o" ng-click="activeSel = 3; generateCharts();"> Generate Charts</button>
             </div>
             <div>
                 <div ng-show="activeSel == 1">
