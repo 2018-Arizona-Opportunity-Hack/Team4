@@ -15,6 +15,11 @@
 				controller: 'ProjectController',
 				templateUrl: 'app/project/main.view.html',
 			})
+            .state('formData',{
+                url:'/formData',
+                controller: 'FormController',
+                templateUrl: 'app/formData/form.view.html',
+            })
 		    
 		 $urlRouterProvider.otherwise('/');
 	}

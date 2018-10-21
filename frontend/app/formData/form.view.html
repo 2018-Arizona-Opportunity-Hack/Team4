@@ -1,0 +1,21 @@
+<div class="container-fluid col-md-6 col-md-offset-1" ng-init="initialize()">
+    <div >
+        <br/>
+
+        <form name="form" ng-submit="" role="form">
+            <br>
+
+            <div>
+                <div class="form-group" ng-repeat="x in objects">
+                    <label>{{ x.name }}</label>
+                    <input type={{x.datatype}} class="form-control ng-pristine ng-valid ng-touched" placeholder={{x.name}} ng-model="x.value">
+                </div>
+                <button class="btn btn-primary" type="button" ng-click="submit()">submit</button>
+            </div>
+
+
+        </form>
+
+
+    </div>
+</div>
