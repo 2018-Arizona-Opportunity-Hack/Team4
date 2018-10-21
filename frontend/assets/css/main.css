@@ -1,0 +1,239 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+body {
+	font: .8em "Lucida Sans", "Trebuchet MS", Verdana, Arial, Sans-Serif;
+	background-color : #e8ecef;
+}
+a {
+	text-decoration: none;
+	color: #4f4f97;
+}
+a:hover {
+	color: #000;
+}
+ul {
+	margin-left:10px;
+}
+img {
+	border: 0px;
+}
+
+.slice{
+	opacity: .8;
+}
+.slicetext > text{
+	fill: #fff;
+}
+.chart-cont1{
+	    border-bottom: 2px solid #55608a;
+}
+.fa-star-o, .fa-star{
+	color:#4a517c;
+}
+.cnt-titles{
+	font-size: 20px;color: #454a70;font-weight: bold;
+}
+.posts-container{
+	margin-left: 30px;
+	margin-top: 20px;
+	color:black;
+	font-size:13px;
+}
+.posts-desc-cont{
+	margin-left: 40px;
+}
+.post-icons > span{
+	margin-right:15px;
+}
+.post-icons > span > i{
+	cursor:pointer;
+}
+.post-que{
+		font-size: 16px;
+		font-weight: bold;
+}
+
+.csr-ptr{
+	cursor: pointer;
+}
+.panel-login {
+	border-color: #454a70;
+	-webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+	box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+}
+.panel-login>.panel-heading {
+	color: #00415d;
+	background-color: #fff;
+	border-color: #fff;
+	text-align:center;
+}
+.panel-login>.panel-heading a{
+	text-decoration: none;
+	color: #666;
+	font-weight: bold;
+	font-size: 15px;
+	-webkit-transition: all 0.1s linear;
+	-moz-transition: all 0.1s linear;
+	transition: all 0.1s linear;
+}
+.panel-login>.panel-heading a.active{
+	color: #454a70;
+	font-size: 18px;
+}
+.panel-login>.panel-heading hr{
+	margin-top: 10px;
+	margin-bottom: 0px;
+	clear: both;
+	border: 0;
+	height: 1px;
+	background-image: -webkit-linear-gradient(left,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.15),rgba(0, 0, 0, 0));
+	background-image: -moz-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+	background-image: -ms-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+	background-image: -o-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+}
+.panel-login input[type="text"],.panel-login input[type="email"],.panel-login input[type="password"] {
+	height: 45px;
+	border: 1px solid #ddd;
+	font-size: 16px;
+	-webkit-transition: all 0.1s linear;
+	-moz-transition: all 0.1s linear;
+	transition: all 0.1s linear;
+}
+.panel-login input:hover,
+.panel-login input:focus {
+	outline:none;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	border-color: #ccc;
+}
+.btn-login {
+	background-color: #454a70;
+	outline: none;
+	color: #fff;
+	font-size: 14px;
+	height: auto;
+	font-weight: normal;
+	padding: 14px 0;
+	text-transform: uppercase;
+	border-color: #59B2E6;
+}
+.btn-login:hover,
+.btn-login:focus {
+	color: #fff;
+	background-color: #8293b3;
+	border-color: #454a70;
+}
+.forgot-password {
+	text-decoration: underline;
+	color: #888;
+}
+.forgot-password:hover,
+.forgot-password:focus {
+	text-decoration: underline;
+	color: #666;
+}
+
+.btn-register {
+	background-color: #454a70;
+	outline: none;
+	color: #fff;
+	font-size: 14px;
+	height: auto;
+	font-weight: normal;
+	padding: 14px 0;
+	text-transform: uppercase;
+	border-color: #1CB94A;
+}
+.btn-register:hover,
+.btn-register:focus {
+	color: #fff;
+	background-color: #8293b3;
+	border-color: #454a70;
+}
+
+.trait-icon-holder{
+	margin-bottom: 30px
+	
+}
+.trait-icon-holder > p{
+	font-size: 15px;
+}	
+
+.highlight-image{
+	border: 2px solid green;
+}
+.quest-holder{
+	font-size: 14px;
+    background: #fff;
+    padding: 10px;
+
+}
+.quest-holder > span.cls{
+	    background: #4682B4;
+    color: white;
+    padding: 2px 12px;
+    border: 1px solid #4682B4;
+    border-radius: 10px;
+    margin-top: -3px;
+    float: right;
+}
+
+.quest-holder > span.status{
+	    background: #008081;
+    color: white;
+    padding: 2px 12px;
+    border: 1px solid #4682B4;
+    border-radius: 10px;
+    margin-top: -3px;
+    float: right;
+    margin-right: 2%;
+}
+.quest-holder > span.points{
+    background: #8ee4af;
+    color: white;
+    padding: 2px 12px;
+    border: 1px solid #8ee4af;
+    border-radius: 10px;
+    margin-top: -3px;
+    float: right;
+    margin-right: 2%;
+}
+.quest-holder > span.lock{
+	color: #05386b;
+    padding: 2px 12px;
+    float: right;
+    margin-right: 2%;
+}
+
+
+.clr1{
+	background: #5cb85c !important;
+	border-color: #5cb85c !important;
+}
+.clr6{
+	background: #5bc0de !important;
+	border-color: #5bc0de !important;
+}
+.clr10{
+	background: #f0ad4e !important;
+	border-color: #f0ad4e !important;
+}
+.ach > p{
+	background: #d0d3f2;
+    padding: 5px;
+    border: 1px;
+    border-radius: 10px;
+    color: #222b8f;
+    margin-bottom: 10px;
+}
+.m-c{
+	    font-size: 13px;
+    display: block;
+    margin-left: 100px;
+    margin-top: -70px;
+}
+
