@@ -10,6 +10,7 @@
         $scope.entity = {}
         $scope.entity.entityName = "";
         $scope.entity.attributes = [{}];
+        $scope.entityNames = [];
         $scope.primaryCols = ['INTEGER', 'VARCHAR(500)', 'timestamp'];
         $scope.primary = [{'value':'INTEGER', 'text': 'Integer'}, {'value':'VARCHAR(500)', 'text':'String'}, {'value':'timestamp','text':'Date'}];
         $scope.related = [];
@@ -23,6 +24,7 @@
                         if(!ele.isEventTable){
                             $scope.related.push({'value': ele.entityName, 'text':ele.entityName})
                         }
+                        $scope.entityNames.push(ele.entityName);
                         
                     });                
                     console.log(response);
@@ -60,7 +62,7 @@
       }
 
       $scope.submit = function(){
-        $http.post(configData.url + '', $scope.entity)
+        $http.post(configData.url + 'objectSchema', $scope.entity)
             .then(function successCallback(response){
                 if(response.data != null){                    
                     console.log(response);

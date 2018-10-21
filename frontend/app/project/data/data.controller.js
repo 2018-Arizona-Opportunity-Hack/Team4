@@ -8,10 +8,15 @@
     function FormController($scope,$state,$rootScope,$http,  $stateParams){
     
         $scope.initialize = function(){
-            if(!$stateParams.entity){
+            $scope.isStateParam = !!$stateParams.entity; 
+            $scope.entityName = $stateParams.entity;
+            if(!$scope.entityName){
                 return;
             }
-            $http.get(configData.url+"getTableColumns?tableName="+ $stateParams.entity)
+            $scope.getEntityColumns();
+        }
+        $scope.getEntityColumns = function () {
+            $http.get(configData.url+"getTableColumns?tableName="+ $scope.entityName)
             .then(function successCallback(response){
                 if(response.data != null){   
                    $scope.objects = response.data;               
@@ -26,7 +31,6 @@
                 
             });
         }
-
         $scope.submit = function(){
             console.log($scope.objects);
         }
