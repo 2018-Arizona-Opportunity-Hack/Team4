@@ -20,9 +20,9 @@ public class CreateObjectDAO {
 
     public Map<String, Object> createObject(ObjectSchema objectSchema){
         boolean isEvent = false;
-        StringBuilder query = new StringBuilder("CREATE TABLE "+objectSchema.getTableName()+" (");
+        StringBuilder query = new StringBuilder("CREATE TABLE "+objectSchema.getEntityName()+" (");
         query.append("id SERIAL PRIMARY KEY,");
-        for(ObjectParameters obj : objectSchema.getObjectParameters()){
+        for(ObjectParameters obj : objectSchema.getAttributes()){
             if(obj.getIsObject()!=null && obj.getIsObject()){
                 query.append(obj.getName()+"_id");
                 isEvent = true;
@@ -34,10 +34,10 @@ public class CreateObjectDAO {
                 query.append(obj.getName());
                 query.append(" ");
                 query.append(obj.getDataType());
-                if(obj.getUnique())
+                if(obj.getIsUnique())
                     query.append(" UNIQUE");
             }
-            if(obj.getMandatory())
+            if(obj.getIsMandatory())
                 query.append(" NOT NULL");
             query.append(",");
         }
@@ -47,7 +47,7 @@ public class CreateObjectDAO {
         entityManager.createNativeQuery(query.toString()).executeUpdate();
         if(isEvent == true){
             Query q = entityManager.createNativeQuery("INSERT into events_tables(table_name) values (?)");
-            q.setParameter(1,objectSchema.getTableName());
+            q.setParameter(1,objectSchema.getEntityName());
             q.executeUpdate();
         }
         return null;

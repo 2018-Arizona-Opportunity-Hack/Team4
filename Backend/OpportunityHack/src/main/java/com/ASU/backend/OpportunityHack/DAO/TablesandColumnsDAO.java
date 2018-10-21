@@ -35,7 +35,7 @@ public class TablesandColumnsDAO {
             ObjectParameters objectParameters = new ObjectParameters();
             objectParameters.setName((String) result.get(i)[0]);
             objectParameters.setDataType(modifyDataTypeName((String) result.get(i)[1]));
-            objectParameters.setMandatory(changeBoolean((String) result.get(i)[2]));
+            objectParameters.setIsMandatory(changeBoolean((String) result.get(i)[2]));
             result1.add(objectParameters);
         }
         return result1;

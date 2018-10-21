@@ -22,7 +22,7 @@ public class ObjectSchemaController {
 
     @RequestMapping(value = "/objectSchema", method = RequestMethod.POST)
     public Map<String, Object> createObject(@RequestBody ObjectSchema objectSchema){
-        System.out.println(objectSchema.getTableName());
+        System.out.println(objectSchema.getEntityName());
         createObjectDAO.createObject(objectSchema);
         return null;
     }

@@ -36,8 +36,8 @@ public class GetTablesandColumnsController {
         HashSet<String> hs = tablesandColumnsDAO.getEventsList();
         for(String tableName : tableNames){
             ObjectSchema objectSchema = new ObjectSchema();
-            objectSchema.setTableName(tableName);
-            objectSchema.setObjectParameters(tablesandColumnsDAO.getTableColumns(tableName));
+            objectSchema.setEntityName(tableName);
+            objectSchema.setAttributes(tablesandColumnsDAO.getTableColumns(tableName));
             objectSchema.setIsEventTable(hs.contains(tableName));
             result.add(objectSchema);
         }

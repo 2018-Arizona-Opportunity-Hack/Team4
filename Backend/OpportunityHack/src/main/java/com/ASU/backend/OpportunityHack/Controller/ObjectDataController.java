@@ -39,12 +39,12 @@ public class ObjectDataController {
         //StringBuilder unique = new StringBuilder();
         for (ObjectParameters op : objectParametersList) {
             if (objectParametersList.indexOf(op) != objectParametersList.size() - 1) {
-                columnNames.append(op.getName() + "(" + mapData(op.getDataType()) + "-" + mapMandatory(op.getMandatory()) + ")" + ",");
+                columnNames.append(op.getName() + "(" + mapData(op.getDataType()) + "-" + mapMandatory(op.getIsMandatory()) + ")" + ",");
                 //dataTypes.append(mapData(op.getDataType()) + ",");
                 //mandatory.append(mapMandatory(op.getMandatory()) + ",");
                 //unique.append(mapUnique(op.getUnique()) + ",");
             } else {
-                columnNames.append(op.getName() + "(" + mapData(op.getDataType()) + "-" + mapMandatory(op.getMandatory()) + ")");
+                columnNames.append(op.getName() + "(" + mapData(op.getDataType()) + "-" + mapMandatory(op.getIsMandatory()) + ")");
                 //dataTypes.append(mapData(op.getDataType()));
                 //mandatory.append(mapMandatory(op.getMandatory()));
                 //unique.append(op.getUnique());

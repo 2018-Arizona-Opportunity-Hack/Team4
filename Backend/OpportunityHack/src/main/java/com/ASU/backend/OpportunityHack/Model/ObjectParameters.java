@@ -14,11 +14,11 @@ public class ObjectParameters {
 
     String dataType;
 
-    Boolean mandatory;
+    Boolean isMandatory = false;
 
-    Boolean unique;
+    Boolean isUnique = false;
 
-    Boolean isObject;
+    Boolean isObject = false;
 
     public String getName() {
         return name;
@@ -36,20 +36,20 @@ public class ObjectParameters {
         this.dataType = dataType;
     }
 
-    public Boolean getMandatory() {
-        return mandatory;
+    public Boolean getIsMandatory() {
+        return isMandatory;
     }
 
-    public void setMandatory(Boolean mandatory) {
-        this.mandatory = mandatory;
+    public void setIsMandatory(Boolean mandatory) {
+        isMandatory = mandatory;
     }
 
-    public Boolean getUnique() {
-        return unique;
+    public Boolean getIsUnique() {
+        return isUnique;
     }
 
-    public void setUnique(Boolean unique) {
-        this.unique = unique;
+    public void setIsUnique(Boolean unique) {
+        isUnique = unique;
     }
 
     public Boolean getIsObject() {
