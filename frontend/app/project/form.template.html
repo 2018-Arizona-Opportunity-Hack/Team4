@@ -14,21 +14,17 @@
   						<tbody>
   							<tr ng-repeat="col in entity.attributes">
   								<td>
-  									<select class="form-control" ng-model="col.dataType">
-  										<option val="" style="display: none">Data Type</option>
-  										<option val="int">Integer</option>
-  										<option val="str">String</option>
-  										<option val="date">Date</option>
+  									<select class="form-control" ng-model="col.dataType" ng-options="x for x in dataTypes">
   									</select>
   								</td>
   								<td>
-  									<input type="text" class="form-control"  ng-model="col.name" placeholder="">
+  									<input type="text" class="form-control"  ng-model="col.name" placeholder=""  ng-disabled="primary.indexOf(col.dataType)<0">
   								</td>
   								<td>
   									<input type="checkbox" class="form-control"  ng-model="col.isMandatory">
   								</td>
   								<td>
-									<input type="checkbox" class="form-control"  ng-model="col.isUnique">
+									<input type="checkbox" class="form-control"  ng-model="col.isUnique" ng-disabled="primary.indexOf(col.dataType)<0">
   								</td>
   								<td>
 									<button ng-click="addNewAttribute()" ng-show="$index == 0"><i class="fa fa-plus"></i></button>
